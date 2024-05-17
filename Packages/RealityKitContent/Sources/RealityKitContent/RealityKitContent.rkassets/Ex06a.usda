@@ -1,0 +1,134 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["OuterSphere", "InnerSphere", "MaterialEx06a"]
+    def Sphere "OuterSphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/MaterialEx06a> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.45
+    }
+
+    def Sphere "InnerSphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/InnerSphere/DefaultMaterial>
+        double radius = 0.3
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            prepend token outputs:surface.connect = </Root/InnerSphere/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0) (
+                    colorSpace = "srgb_texture"
+                )
+                color3f inputs:emissiveColor = (0.9994341, 1, 0.6556826) (
+                    colorSpace = "srgb_texture"
+                )
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Material "MaterialEx06a"
+    {
+        token outputs:mtlx:surface.connect = </Root/MaterialEx06a/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (405.0039, 24.082031)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 72
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            bool inputs:applyPostProcessToneMap = 1
+            color3f inputs:color.connect = </Root/MaterialEx06a/Constant.outputs:out>
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity.connect = </Root/MaterialEx06a/Range.outputs:out>
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (166.88281, 44.39453)
+            float2 ui:nodegraph:node:size = (194.5, 181)
+            int ui:nodegraph:node:stackingOrder = 74
+        }
+
+        def Shader "ViewDirection"
+        {
+            uniform token info:id = "ND_realitykit_viewdirection_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-442.14844, 171.85938)
+            float2 ui:nodegraph:node:size = (210, 53)
+            int ui:nodegraph:node:stackingOrder = 127
+        }
+
+        def Shader "Normal"
+        {
+            uniform token info:id = "ND_normal_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-411.03906, 249.8711)
+            float2 ui:nodegraph:node:size = (128.5, 40)
+            int ui:nodegraph:node:stackingOrder = 127
+        }
+
+        def Shader "DotProduct"
+        {
+            uniform token info:id = "ND_dotproduct_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx06a/ViewDirection.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx06a/Normal.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-225.67969, 221.05469)
+            float2 ui:nodegraph:node:size = (153.5, 53)
+            int ui:nodegraph:node:stackingOrder = 127
+        }
+
+        def Shader "Range"
+        {
+            uniform token info:id = "ND_range_float"
+            bool inputs:doclamp
+            float inputs:gamma = 0.3
+            float inputs:in.connect = </Root/MaterialEx06a/DotProduct.outputs:out>
+            float inputs:inhigh
+            float inputs:inlow
+            float inputs:outhigh
+            float inputs:outlow
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-30.855469, 203.51953)
+            float2 ui:nodegraph:node:size = (98, 217)
+            int ui:nodegraph:node:stackingOrder = 145
+        }
+
+        def Shader "Constant"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (1, 0.80971503, 0.23296414) (
+                colorSpace = "srgb_texture"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-209.59961, -50.98242)
+            float2 ui:nodegraph:node:size = (151, 53)
+            int ui:nodegraph:node:stackingOrder = 144
+        }
+    }
+}
+

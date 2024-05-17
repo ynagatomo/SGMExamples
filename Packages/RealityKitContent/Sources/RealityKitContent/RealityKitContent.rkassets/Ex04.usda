@@ -1,0 +1,700 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Sphere", "MaterialEx04"]
+    def Sphere "Sphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/MaterialEx04> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.45
+    }
+
+    def Material "MaterialEx04"
+    {
+        prepend token outputs:mtlx:surface.connect = </Root/MaterialEx04/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (958.42365, -42.102016)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 136
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            float inputs:clearcoat
+            float inputs:clearcoatRoughness
+            color3f inputs:diffuseColor = (0, 0, 0) (
+                colorSpace = "srgb_texture"
+            )
+            color3f inputs:emissiveColor.connect = </Root/MaterialEx04/Convert_8.outputs:out>
+            float inputs:ior
+            float inputs:occlusion
+            float inputs:opacityThreshold
+            float inputs:roughness = 0.8
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (733.42365, -42.102016)
+            float2 ui:nodegraph:node:size = (159.5, 307)
+            int ui:nodegraph:node:stackingOrder = 399
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced", "inputs:diffuseColor", "inputs:metallic"]
+        }
+
+        def Shader "Image"
+        {
+            uniform token info:id = "ND_image_color3"
+            color3f inputs:default
+            asset inputs:file = @TextureImages/artist_workshop_1k.heic@
+            string inputs:filtertype
+            float2 inputs:texcoord.connect = </Root/MaterialEx04/Add.outputs:out>
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-952.716, -324.7902)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 266
+        }
+
+        def Shader "Texcoord"
+        {
+            uniform token info:id = "ND_texcoord_vector2"
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1737.5807, -212.31879)
+            float2 ui:nodegraph:node:size = (180.5, 53)
+            int ui:nodegraph:node:stackingOrder = 266
+        }
+
+        def Shader "Divide"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1 = 1
+            float inputs:in2 = 512
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1815.4006, -403.22836)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 400
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx04/Divide.outputs:out>
+            float inputs:in2 = -1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1718.969, -427.77014)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 401
+        }
+
+        def Shader "Combine3"
+        {
+            uniform token info:id = "ND_combine3_vector3"
+            float inputs:in1.connect = </Root/MaterialEx04/Multiply.outputs:out>
+            float inputs:in2
+            float inputs:in3.connect = </Root/MaterialEx04/Divide.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-1581.8605, -402.6078)
+            float2 ui:nodegraph:node:size = (145, 54)
+            int ui:nodegraph:node:stackingOrder = 402
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx04/o_xz.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx04/Texcoord.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1095.2949, -307.65866)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 266
+        }
+
+        def Shader "o"
+        {
+            uniform token info:id = "ND_separate3_vector3"
+            float3 inputs:in.connect = </Root/MaterialEx04/Combine3.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (-1419.1299, -397.22366)
+            float2 ui:nodegraph:node:size = (102, 145)
+            int ui:nodegraph:node:stackingOrder = 403
+        }
+
+        def Shader "o_xz"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/MaterialEx04/o.outputs:outx>
+            float inputs:in2.connect = </Root/MaterialEx04/o.outputs:outz>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1237.2705, -384.60516)
+            float2 ui:nodegraph:node:size = (131, 53)
+            int ui:nodegraph:node:stackingOrder = 266
+        }
+
+        def Shader "o_xy"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/MaterialEx04/o.outputs:outx>
+            float inputs:in2.connect = </Root/MaterialEx04/o.outputs:outy>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1235.865, -167.47249)
+            float2 ui:nodegraph:node:size = (131, 53)
+            int ui:nodegraph:node:stackingOrder = 266
+        }
+
+        def Shader "Add_1"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx04/o_xy.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx04/Texcoord.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1097.8025, -119.99218)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 436
+        }
+
+        def Shader "Image_1"
+        {
+            uniform token info:id = "ND_image_color3"
+            color3f inputs:default
+            asset inputs:file = @TextureImages/artist_workshop_1k.heic@
+            string inputs:filtertype
+            float2 inputs:texcoord.connect = </Root/MaterialEx04/Add_1.outputs:out>
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-949.6556, -108.2264)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 266
+        }
+
+        def Shader "Convert"
+        {
+            uniform token info:id = "ND_convert_color3_vector3"
+            color3f inputs:in.connect = </Root/MaterialEx04/Image_1.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-761.30084, -59.230247)
+            float2 ui:nodegraph:node:size = (135.5, 40)
+            int ui:nodegraph:node:stackingOrder = 266
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Convert.outputs:out>
+            float3 inputs:in2 = (2, 2, 2)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-607.45953, -85.501564)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 266
+        }
+
+        def Shader "Convert_1"
+        {
+            uniform token info:id = "ND_convert_color3_vector3"
+            color3f inputs:in.connect = </Root/MaterialEx04/Image.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-762.981, -239.95424)
+            float2 ui:nodegraph:node:size = (148, 53)
+            int ui:nodegraph:node:stackingOrder = 266
+        }
+
+        def Shader "Add_2"
+        {
+            uniform token info:id = "ND_add_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Convert_1.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Multiply_1.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-567.76984, -216.31119)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 266
+        }
+
+        def Shader "o_xx"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/MaterialEx04/o.outputs:outx>
+            float inputs:in2.connect = </Root/MaterialEx04/o.outputs:outx>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1232.2472, 82.643)
+            float2 ui:nodegraph:node:size = (131, 53)
+            int ui:nodegraph:node:stackingOrder = 268
+        }
+
+        def Shader "Image_2"
+        {
+            uniform token info:id = "ND_image_color3"
+            color3f inputs:default
+            asset inputs:file = @TextureImages/artist_workshop_1k.heic@
+            string inputs:filtertype
+            float2 inputs:texcoord.connect = </Root/MaterialEx04/Add_7.outputs:out>
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-942.9694, 108.35464)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 273
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:uaddressmode"]
+        }
+
+        def Shader "Convert_2"
+        {
+            uniform token info:id = "ND_convert_color3_vector3"
+            color3f inputs:in.connect = </Root/MaterialEx04/Image_2.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-744.53015, 175.34195)
+            float2 ui:nodegraph:node:size = (151, 53)
+            int ui:nodegraph:node:stackingOrder = 277
+        }
+
+        def Shader "Add_3"
+        {
+            uniform token info:id = "ND_add_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Add_2.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Convert_2.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-485.39453, -3.4279861)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 287
+        }
+
+        def Shader "Subtract"
+        {
+            uniform token info:id = "ND_subtract_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Convert_1.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Convert_2.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-485.75275, 72.22218)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 293
+        }
+
+        def Shader "o_yz"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/MaterialEx04/o.outputs:outy>
+            float inputs:in2.connect = </Root/MaterialEx04/o.outputs:outz>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1226.1938, 303.33032)
+            float2 ui:nodegraph:node:size = (131, 53)
+            int ui:nodegraph:node:stackingOrder = 296
+        }
+
+        def Shader "Image_3"
+        {
+            uniform token info:id = "ND_image_color3"
+            color3f inputs:default
+            asset inputs:file = @TextureImages/artist_workshop_1k.heic@
+            string inputs:filtertype
+            float2 inputs:texcoord.connect = </Root/MaterialEx04/Add_8.outputs:out>
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-944.8322, 325.5732)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 301
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:uaddressmode"]
+        }
+
+        def Shader "Convert_3"
+        {
+            uniform token info:id = "ND_convert_color3_vector3"
+            color3f inputs:in.connect = </Root/MaterialEx04/Image_3.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-744.65857, 398.30466)
+            float2 ui:nodegraph:node:size = (150.5, 53)
+            int ui:nodegraph:node:stackingOrder = 305
+        }
+
+        def Shader "Multiply_2"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Convert_3.outputs:out>
+            float3 inputs:in2 = (2, 2, 2)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-601.4142, 383.505)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 309
+        }
+
+        def Shader "Add_4"
+        {
+            uniform token info:id = "ND_add_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Subtract.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Multiply_2.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-370.99786, 215.90681)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 333
+        }
+
+        def Shader "o_yx"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/MaterialEx04/o.outputs:outy>
+            float inputs:in2.connect = </Root/MaterialEx04/o.outputs:outx>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1225.5505, 508.68665)
+            float2 ui:nodegraph:node:size = (131, 53)
+            int ui:nodegraph:node:stackingOrder = 316
+        }
+
+        def Shader "Image_4"
+        {
+            uniform token info:id = "ND_image_color3"
+            color3f inputs:default
+            asset inputs:file = @TextureImages/artist_workshop_1k.heic@
+            string inputs:filtertype
+            float2 inputs:texcoord.connect = </Root/MaterialEx04/Add_9.outputs:out>
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-945.35126, 545.737)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 321
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:uaddressmode", "inputs:texcoord"]
+        }
+
+        def Shader "Convert_4"
+        {
+            uniform token info:id = "ND_convert_color3_vector3"
+            color3f inputs:in.connect = </Root/MaterialEx04/Image_4.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-744.12476, 615.8956)
+            float2 ui:nodegraph:node:size = (151, 53)
+            int ui:nodegraph:node:stackingOrder = 325
+        }
+
+        def Shader "Multiply_3"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Convert_4.outputs:out>
+            float3 inputs:in2 = (2, 2, 2)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-609.62, 607.96735)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 352
+        }
+
+        def Shader "Subtract_1"
+        {
+            uniform token info:id = "ND_subtract_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Add_4.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Multiply_3.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-269.71332, 475.59503)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 329
+        }
+
+        def Shader "o_zz"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/MaterialEx04/o.outputs:outz>
+            float inputs:in2.connect = </Root/MaterialEx04/o.outputs:outz>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1228.307, 737.34625)
+            float2 ui:nodegraph:node:size = (131, 53)
+            int ui:nodegraph:node:stackingOrder = 339
+        }
+
+        def Shader "Image_5"
+        {
+            uniform token info:id = "ND_image_color3"
+            color3f inputs:default
+            asset inputs:file = @TextureImages/artist_workshop_1k.heic@
+            string inputs:filtertype
+            float2 inputs:texcoord.connect = </Root/MaterialEx04/Add_10.outputs:out>
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-948.3001, 761.8526)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 344
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:uaddressmode", "inputs:texcoord", "inputs:texcoord"]
+        }
+
+        def Shader "Convert_5"
+        {
+            uniform token info:id = "ND_convert_color3_vector3"
+            color3f inputs:in.connect = </Root/MaterialEx04/Image_5.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-746.9247, 828.1159)
+            float2 ui:nodegraph:node:size = (150.5, 53)
+            int ui:nodegraph:node:stackingOrder = 348
+        }
+
+        def Shader "Subtract_2"
+        {
+            uniform token info:id = "ND_subtract_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Add_3.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Convert_5.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-151.89064, 811.7376)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 356
+        }
+
+        def Shader "Add_5"
+        {
+            uniform token info:id = "ND_add_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Convert_5.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Subtract_1.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-150.79094, 569.8332)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 390
+        }
+
+        def Shader "o_zy"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/MaterialEx04/o.outputs:outz>
+            float inputs:in2.connect = </Root/MaterialEx04/o.outputs:outy>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1224.5703, 961.5739)
+            float2 ui:nodegraph:node:size = (131, 53)
+            int ui:nodegraph:node:stackingOrder = 360
+        }
+
+        def Shader "Image_6"
+        {
+            uniform token info:id = "ND_image_color3"
+            color3f inputs:default
+            asset inputs:file = @TextureImages/artist_workshop_1k.heic@
+            string inputs:filtertype
+            float2 inputs:texcoord.connect = </Root/MaterialEx04/Add_11.outputs:out>
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-948.9648, 978.6987)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 365
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:uaddressmode", "inputs:texcoord", "inputs:texcoord", "inputs:uaddressmode"]
+        }
+
+        def Shader "Convert_6"
+        {
+            uniform token info:id = "ND_convert_color3_vector3"
+            color3f inputs:in.connect = </Root/MaterialEx04/Image_6.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-755.1941, 1038.3971)
+            float2 ui:nodegraph:node:size = (151, 53)
+            int ui:nodegraph:node:stackingOrder = 369
+        }
+
+        def Shader "Multiply_4"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Convert_6.outputs:out>
+            float3 inputs:in2 = (2, 2, 2)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-613.0395, 1037.2959)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 382
+        }
+
+        def Shader "Subtract_3"
+        {
+            uniform token info:id = "ND_subtract_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Subtract_2.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Multiply_4.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-47.547962, 968.1339)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 373
+        }
+
+        def Shader "o_zx"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/MaterialEx04/o.outputs:outz>
+            float inputs:in2.connect = </Root/MaterialEx04/o.outputs:outx>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1225.429, 1166.1051)
+            float2 ui:nodegraph:node:size = (131, 53)
+            int ui:nodegraph:node:stackingOrder = 364
+        }
+
+        def Shader "Image_7"
+        {
+            uniform token info:id = "ND_image_color3"
+            color3f inputs:default
+            asset inputs:file = @TextureImages/artist_workshop_1k.heic@
+            string inputs:filtertype
+            float2 inputs:texcoord.connect = </Root/MaterialEx04/Add_12.outputs:out>
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-949.4818, 1192.7627)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 368
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:uaddressmode", "inputs:texcoord", "inputs:texcoord", "inputs:uaddressmode"]
+        }
+
+        def Shader "Convert_7"
+        {
+            uniform token info:id = "ND_convert_color3_vector3"
+            color3f inputs:in.connect = </Root/MaterialEx04/Image_7.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-753.9475, 1258.3069)
+            float2 ui:nodegraph:node:size = (150.5, 53)
+            int ui:nodegraph:node:stackingOrder = 372
+        }
+
+        def Shader "Subtract_4"
+        {
+            uniform token info:id = "ND_subtract_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Subtract_3.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Convert_7.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (77.24159, 1067.8453)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 378
+        }
+
+        def Shader "Subtract_5"
+        {
+            uniform token info:id = "ND_subtract_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Add_5.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Convert_7.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (80.01612, 1170.2935)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 381
+        }
+
+        def Shader "Multiply_5"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Subtract_4.outputs:out>
+            float3 inputs:in2 = (2, 2, 2)
+            float3 inputs:in2.connect = </Root/MaterialEx04/Subtract_4.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (190.63588, 970.9253)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 386
+        }
+
+        def Shader "Multiply_6"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Subtract_5.outputs:out>
+            float3 inputs:in2 = (2, 2, 2)
+            float3 inputs:in2.connect = </Root/MaterialEx04/Subtract_5.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (190.41533, 1146.1141)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 389
+        }
+
+        def Shader "Add_6"
+        {
+            uniform token info:id = "ND_add_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx04/Multiply_5.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx04/Multiply_6.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (316.0071, 971.88745)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 393
+        }
+
+        def Shader "Sqrt"
+        {
+            uniform token info:id = "ND_sqrt_vector3"
+            float3 inputs:in.connect = </Root/MaterialEx04/Add_6.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (497.50745, 944.1101)
+            float2 ui:nodegraph:node:size = (143.5, 53)
+            int ui:nodegraph:node:stackingOrder = 397
+        }
+
+        def Shader "Convert_8"
+        {
+            uniform token info:id = "ND_convert_vector3_color3"
+            float3 inputs:in.connect = </Root/MaterialEx04/Sqrt.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (480.67728, 547.2514)
+            float2 ui:nodegraph:node:size = (151, 53)
+            int ui:nodegraph:node:stackingOrder = 398
+        }
+
+        def Shader "Add_7"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx04/Texcoord.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx04/o_xx.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1085.9979, 51.631752)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 442
+        }
+
+        def Shader "Add_8"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx04/Texcoord.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx04/o_yz.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1087.2927, 277.2542)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 445
+        }
+
+        def Shader "Add_9"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx04/Texcoord.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx04/o_yx.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1094.6307, 489.86716)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 448
+        }
+
+        def Shader "Add_10"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx04/Texcoord.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx04/o_zz.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1095.1642, 717.2582)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 451
+        }
+
+        def Shader "Add_11"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx04/Texcoord.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx04/o_zy.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1090.089, 933.283)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 454
+        }
+
+        def Shader "Add_12"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx04/Texcoord.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx04/o_zx.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1087.8441, 1145.7612)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 457
+        }
+    }
+}
+

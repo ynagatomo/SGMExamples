@@ -1,0 +1,1969 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Sphere", "MaterialEx05"]
+    def Sphere "Sphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/MaterialEx05> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.45
+    }
+
+    def Material "MaterialEx05"
+    {
+        token outputs:mtlx:surface.connect = </Root/MaterialEx05/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (2470.829, -169.42798)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 2108
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            float inputs:clearcoatRoughness
+            color3f inputs:diffuseColor = (0, 0, 0) (
+                colorSpace = "srgb_texture"
+            )
+            color3f inputs:emissiveColor.connect = </Root/MaterialEx05/Image.outputs:out>
+            float inputs:ior
+            float inputs:occlusion
+            float inputs:roughness = 0.8
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (2245.829, -169.42798)
+            float2 ui:nodegraph:node:size = (159.5, 307)
+            int ui:nodegraph:node:stackingOrder = 2108
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+        }
+
+        def Shader "Image"
+        {
+            uniform token info:id = "ND_image_color3"
+            color3f inputs:default
+            asset inputs:file = @TextureImages/artist_workshop_1k.heic@
+            string inputs:filtertype
+            float2 inputs:texcoord.connect = </Root/MaterialEx05/Add.outputs:out>
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (2025.04, -199.53647)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 2108
+        }
+
+        def Shader "Texcoord"
+        {
+            uniform token info:id = "ND_texcoord_vector2"
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (1023.35126, -492.40564)
+            float2 ui:nodegraph:node:size = (180.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1853
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/Texcoord.outputs:out>
+            float2 inputs:in2 = (2, 2)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1948.6447, -298.08093)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1892
+        }
+
+        def Shader "Subtract"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/Multiply.outputs:out>
+            float2 inputs:in2 = (1, 1)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1866.3074, -289.12283)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1893
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/Texcoord.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx05/Combine2.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (1233.7485, -245.87006)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 2108
+        }
+
+        def Shader "Time"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1687.3575, 902.5558)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1789
+        }
+
+        def Shader "Multiply_17"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Divide_3.outputs:out>
+            float inputs:in2 = 6.283
+            float inputs:in2.connect = </Root/MaterialEx05/Sin_3.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (851.58734, 886.0304)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "numWaves_3"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 10
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-464.26978, 635.4833)
+            float2 ui:nodegraph:node:size = (167, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "pos_1"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0, 0)
+            float2 inputs:value.connect = </Root/MaterialEx05/pos_0.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-758.3999, 723.04443)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Sin_3"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/MaterialEx05/Multiply_24.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (775.6291, 1014.93994)
+            float2 ui:nodegraph:node:size = (121, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_23"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Add_10.outputs:out>
+            float inputs:in2 = 6.283
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (637.2999, 670.9429)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_26"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_16.outputs:out>
+            float inputs:in2 = 20
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (528.07007, 438.11395)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "t_1"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0
+            float inputs:value.connect = </Root/MaterialEx05/t_0.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-752.6873, 794.6367)
+            float2 ui:nodegraph:node:size = (115, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "numWaves_2"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 10
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-468.61023, 983.7842)
+            float2 ui:nodegraph:node:size = (167.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Divide_2"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Add_8.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (706.9491, 440.37653)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "center_2"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (-0.5, 0.5)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-462.61084, 1053.0068)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_24"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Add_9.outputs:out>
+            float inputs:in2 = 6.283
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (632.9594, 1019.2438)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "freq_3"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 2.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-476.82623, 911.69946)
+            float2 ui:nodegraph:node:size = (126.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_28"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/numWaves_3.outputs:out>
+            float inputs:in2 = -1
+            float inputs:in2.connect = None
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (289.65433, 653.45703)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "center_3"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0.5, -0.5)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-458.2704, 704.70593)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Exp_2"
+        {
+            uniform token info:id = "ND_exp_float"
+            float inputs:in.connect = </Root/MaterialEx05/Magnitude_2.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (18.385529, 538.6362)
+            float2 ui:nodegraph:node:size = (123, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_22"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/t_1.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/freq_3.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (462.5111, 1067.5846)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Divide_3"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Add_12.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (702.6086, 788.67737)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_19"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Divide_2.outputs:out>
+            float inputs:in2 = 6.283
+            float inputs:in2.connect = </Root/MaterialEx05/Sin_2.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (855.92786, 537.7295)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Subtract_4"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/pos_1.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx05/center_3.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-316.62256, 541.0676)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Add_8"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_26.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (618.8419, 439.25433)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Subtract_3"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/pos_1.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx05/center_2.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-320.96298, 889.3684)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Add_10"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_15.outputs:out>
+            float inputs:in2 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_27.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (556.7198, 664.4807)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_15"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_2.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_28.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (461.84875, 613.2456)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_16"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_2.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/d_2.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (441.69098, 438.36115)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Magnitude_2"
+        {
+            uniform token info:id = "ND_magnitude_vector2"
+            float2 inputs:in.connect = </Root/MaterialEx05/Subtract_4.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-158.15193, 541.125)
+            float2 ui:nodegraph:node:size = (167.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_25"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/numWaves_2.outputs:out>
+            float inputs:in2 = -1
+            float inputs:in2.connect = None
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (285.31387, 1001.7578)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Magnitude_3"
+        {
+            uniform token info:id = "ND_magnitude_vector2"
+            float2 inputs:in.connect = </Root/MaterialEx05/Subtract_3.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-162.4924, 889.4258)
+            float2 ui:nodegraph:node:size = (167.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Add_12"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_18.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (614.5014, 787.5552)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Add_11"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Exp_3.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (127.438156, 892.2517)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_27"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/t_1.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/freq_2.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (466.85162, 719.2838)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_20"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_3.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/d_3.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (437.35046, 786.662)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_18"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_20.outputs:out>
+            float inputs:in2 = 20
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (523.72955, 786.4148)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Multiply_21"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_3.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_25.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (457.50824, 961.5465)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Exp_3"
+        {
+            uniform token info:id = "ND_exp_float"
+            float inputs:in.connect = </Root/MaterialEx05/Magnitude_3.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (14.045074, 886.937)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "d_3"
+        {
+            uniform token info:id = "ND_ln_float"
+            float inputs:in.connect = </Root/MaterialEx05/Add_11.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (272.6186, 892.8613)
+            float2 ui:nodegraph:node:size = (139, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "d_2"
+        {
+            uniform token info:id = "ND_ln_float"
+            float inputs:in.connect = </Root/MaterialEx05/Add_7.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (276.95905, 544.5604)
+            float2 ui:nodegraph:node:size = (139, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Add_7"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Exp_2.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (131.77861, 543.9508)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Sin_2"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/MaterialEx05/Multiply_23.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (779.9696, 666.63916)
+            float2 ui:nodegraph:node:size = (121.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Add_9"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_21.outputs:out>
+            float inputs:in2 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_22.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (552.3793, 1012.7816)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "freq_2"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 2.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-472.48578, 563.39856)
+            float2 ui:nodegraph:node:size = (126.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "pos_0"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0, 0)
+            float2 inputs:value.connect = </Root/MaterialEx05/Subtract.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1381.9432, 798.9595)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 1580
+        }
+
+        def Shader "t_0"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0
+            float inputs:value.connect = </Root/MaterialEx05/Time.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1371.5383, 891.81616)
+            float2 ui:nodegraph:node:size = (115, 53)
+            int ui:nodegraph:node:stackingOrder = 1580
+        }
+
+        def Shader "Subtract_5"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/pos_0.outputs:out>
+            float2 inputs:in2 = (0.01, 0)
+            float2 inputs:in2.connect = None
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1205.5564, 487.85333)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1894
+        }
+
+        def Shader "Subtract_6"
+        {
+            uniform token info:id = "ND_subtract_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Add_25.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Add_26.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1174.169, 330.03076)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1647
+        }
+
+        def Shader "Magnitude_6"
+        {
+            uniform token info:id = "ND_magnitude_vector2"
+            float2 inputs:in.connect = </Root/MaterialEx05/Subtract_9.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-220.92711, 1667.1698)
+            float2 ui:nodegraph:node:size = (167.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_17"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Exp_7.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (96.885765, 2394.462)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_37"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_35.outputs:out>
+            float inputs:in2 = 20
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (469.63535, 1215.858)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "pos_2"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0, 0)
+            float2 inputs:value.connect = </Root/MaterialEx05/pos_0.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-788.9523, 2225.2546)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "freq_4"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 2.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-530.9205, 1341.1426)
+            float2 ui:nodegraph:node:size = (126.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Subtract_7"
+        {
+            uniform token info:id = "ND_subtract_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Add_27.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Add_28.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1143.6166, 1832.2411)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_45"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Add_23.outputs:out>
+            float inputs:in2 = 6.283
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (602.40704, 2521.454)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_22"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_44.outputs:out>
+            float inputs:in2 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_32.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (493.94455, 1790.5256)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_18"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_46.outputs:out>
+            float inputs:in2 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_36.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (526.1674, 2166.691)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_35"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_4.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/d_4.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (383.25626, 1216.1052)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_15"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_37.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (560.4072, 1216.9984)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "center_5"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0.5, -0.5)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-488.82278, 2206.9163)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_14"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Exp_6.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (69.00344, 1669.9957)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_21"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Exp_4.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (101.22622, 2046.1611)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_38"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_47.outputs:out>
+            float inputs:in2 = 20
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (497.51767, 1940.3242)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_50"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/numWaves_7.outputs:out>
+            float inputs:in2 = -1
+            float inputs:in2.connect = None
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (226.87917, 1779.5018)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_52"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/numWaves_5.outputs:out>
+            float inputs:in2 = -1
+            float inputs:in2.connect = None
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (259.10193, 2155.6672)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_46"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_5.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_52.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (431.29636, 2115.4558)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_13"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_48.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (556.0667, 1565.2992)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "freq_6"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 2.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-535.2609, 1689.4435)
+            float2 ui:nodegraph:node:size = (126.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "d_7"
+        {
+            uniform token info:id = "ND_ln_float"
+            float inputs:in.connect = </Root/MaterialEx05/Add_14.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (214.18388, 1670.6053)
+            float2 ui:nodegraph:node:size = (139, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Exp_6"
+        {
+            uniform token info:id = "ND_exp_float"
+            float inputs:in.connect = </Root/MaterialEx05/Magnitude_6.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-44.38964, 1664.681)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_48"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_39.outputs:out>
+            float inputs:in2 = 20
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (465.29483, 1564.1588)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Magnitude_5"
+        {
+            uniform token info:id = "ND_magnitude_vector2"
+            float2 inputs:in.connect = </Root/MaterialEx05/Subtract_11.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-216.58664, 1318.869)
+            float2 ui:nodegraph:node:size = (167, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "center_4"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (-0.5, 0.5)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-521.04553, 1830.7509)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "freq_5"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 2.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-507.37863, 2413.9097)
+            float2 ui:nodegraph:node:size = (126, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_42"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Add_22.outputs:out>
+            float inputs:in2 = 6.283
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (574.5247, 1796.9878)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Exp_7"
+        {
+            uniform token info:id = "ND_exp_float"
+            float inputs:in.connect = </Root/MaterialEx05/Magnitude_4.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-16.507315, 2389.1472)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Divide_10"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Add_15.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (648.5144, 1218.1206)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_47"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_5.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/d_5.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (411.13858, 1940.5714)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "numWaves_6"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 10
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-522.70447, 1413.2273)
+            float2 ui:nodegraph:node:size = (167.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_33"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Divide_10.outputs:out>
+            float inputs:in2 = 6.283
+            float inputs:in2.connect = </Root/MaterialEx05/Sin_6.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (797.49316, 1315.4736)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Subtract_8"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/pos_2.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx05/center_6.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-351.51538, 2391.5786)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Magnitude_7"
+        {
+            uniform token info:id = "ND_magnitude_vector2"
+            float2 inputs:in.connect = </Root/MaterialEx05/Subtract_10.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-188.70432, 2043.3353)
+            float2 ui:nodegraph:node:size = (167, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Sin_6"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/MaterialEx05/Multiply_31.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (721.5349, 1444.3832)
+            float2 ui:nodegraph:node:size = (121, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_49"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/t_3.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/freq_4.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (408.4169, 1497.0278)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_53"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/t_2.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/freq_5.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (431.9587, 2569.795)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_54"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/numWaves_4.outputs:out>
+            float inputs:in2 = -1
+            float inputs:in2.connect = None
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (254.76149, 2503.968)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "numWaves_5"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 10
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-494.82217, 2137.6936)
+            float2 ui:nodegraph:node:size = (167, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_32"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/t_3.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/freq_6.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (404.0764, 1845.3286)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "d_4"
+        {
+            uniform token info:id = "ND_ln_float"
+            float inputs:in.connect = </Root/MaterialEx05/Add_24.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (218.52434, 1322.3044)
+            float2 ui:nodegraph:node:size = (139, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "center_6"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (-0.5, 0.5)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-493.16324, 2555.217)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "center_7"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0.5, -0.5)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-516.7051, 1482.45)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_51"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Divide_7.outputs:out>
+            float inputs:in2 = 6.283
+            float inputs:in2.connect = </Root/MaterialEx05/Sin_5.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (825.3755, 2039.9398)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_34"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_6.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/d_6.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (406.79807, 2288.8723)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "t_3"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0
+            float inputs:value.connect = </Root/MaterialEx05/t_0.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-811.122, 1572.3807)
+            float2 ui:nodegraph:node:size = (115, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_24"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Exp_5.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (73.343895, 1321.6948)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_30"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_4.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_40.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (403.41403, 1390.9896)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Subtract_11"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/pos_3.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx05/center_7.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-375.05725, 1318.8116)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Divide_11"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Add_13.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (644.1739, 1566.4214)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Divide_7"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Add_19.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (676.3967, 1942.5868)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Subtract_10"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/pos_2.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx05/center_5.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-347.17493, 2043.278)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "t_2"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0
+            float inputs:value.connect = </Root/MaterialEx05/t_0.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-783.2397, 2296.847)
+            float2 ui:nodegraph:node:size = (115, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Subtract_9"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/pos_3.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx05/center_4.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-379.3977, 1667.1124)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_29"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Divide_11.outputs:out>
+            float inputs:in2 = 6.283
+            float inputs:in2.connect = </Root/MaterialEx05/Sin_7.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (793.15265, 1663.7744)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_23"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_55.outputs:out>
+            float inputs:in2 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_53.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (521.8269, 2514.992)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Magnitude_4"
+        {
+            uniform token info:id = "ND_magnitude_vector2"
+            float2 inputs:in.connect = </Root/MaterialEx05/Subtract_8.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-193.04478, 2391.636)
+            float2 ui:nodegraph:node:size = (167.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Divide_8"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Add_20.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (672.0562, 2290.8877)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_16"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_30.outputs:out>
+            float inputs:in2 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_49.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (498.28506, 1442.2247)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "pos_3"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0, 0)
+            float2 inputs:value.connect = </Root/MaterialEx05/Subtract_12.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-816.8346, 1500.7885)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "numWaves_7"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 10
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-527.0449, 1761.5282)
+            float2 ui:nodegraph:node:size = (167, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Sin_5"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/MaterialEx05/Multiply_56.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (749.41724, 2168.8494)
+            float2 ui:nodegraph:node:size = (121, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Exp_5"
+        {
+            uniform token info:id = "ND_exp_float"
+            float inputs:in.connect = </Root/MaterialEx05/Magnitude_5.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-40.049187, 1316.3802)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_55"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_6.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_54.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (426.95584, 2463.7568)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "d_6"
+        {
+            uniform token info:id = "ND_ln_float"
+            float inputs:in.connect = </Root/MaterialEx05/Add_17.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (242.06621, 2395.0715)
+            float2 ui:nodegraph:node:size = (139, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_41"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_34.outputs:out>
+            float inputs:in2 = 20
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (493.17715, 2288.625)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_39"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_7.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/d_7.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (378.91574, 1564.406)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_20"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_41.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (583.94904, 2289.7654)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Add_19"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_38.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (588.28955, 1941.4646)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_43"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Divide_8.outputs:out>
+            float inputs:in2 = 6.283
+            float inputs:in2.connect = </Root/MaterialEx05/Sin_4.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (821.035, 2388.2407)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Sin_4"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/MaterialEx05/Multiply_45.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (745.0767, 2517.1501)
+            float2 ui:nodegraph:node:size = (121, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_44"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_7.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_50.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (399.07352, 1739.2905)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_36"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/t_2.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/freq_7.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (436.29922, 2221.4941)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_40"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/numWaves_6.outputs:out>
+            float inputs:in2 = -1
+            float inputs:in2.connect = None
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (231.21962, 1431.201)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "d_5"
+        {
+            uniform token info:id = "ND_ln_float"
+            float inputs:in.connect = </Root/MaterialEx05/Add_21.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (246.40666, 2046.7708)
+            float2 ui:nodegraph:node:size = (139, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Sin_7"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/MaterialEx05/Multiply_42.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (717.1944, 1792.684)
+            float2 ui:nodegraph:node:size = (121, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "numWaves_4"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 10
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-499.16263, 2485.9944)
+            float2 ui:nodegraph:node:size = (167.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Exp_4"
+        {
+            uniform token info:id = "ND_exp_float"
+            float inputs:in.connect = </Root/MaterialEx05/Magnitude_7.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-12.166862, 2040.8466)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_31"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Add_16.outputs:out>
+            float inputs:in2 = 6.283
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (578.86523, 1448.6869)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "freq_7"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 2.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-503.03818, 2065.609)
+            float2 ui:nodegraph:node:size = (126, 53)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Multiply_56"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Add_18.outputs:out>
+            float inputs:in2 = 6.283
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (606.74756, 2173.153)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 1771
+        }
+
+        def Shader "Subtract_12"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/pos_0.outputs:out>
+            float2 inputs:in2 = (0, 0.01)
+            float2 inputs:in2.connect = None
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1159.1731, 1454.7715)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 1895
+        }
+
+        def Shader "Combine2"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/MaterialEx05/Subtract_6.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Subtract_7.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (1542.8054, 797.1316)
+            float2 ui:nodegraph:node:size = (144.5, 53)
+            int ui:nodegraph:node:stackingOrder = 1787
+        }
+
+        def Shader "Add_26"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_19.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_17.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (993.0184, 618.62866)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1909
+        }
+
+        def Shader "Add_27"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_33.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_29.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (935.26984, 1579.0059)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1915
+        }
+
+        def Shader "Add_28"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_51.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_43.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (959.32874, 2199.7546)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 1918
+        }
+
+        def Shader "Exp_1"
+        {
+            uniform token info:id = "ND_exp_float"
+            float inputs:in.connect = </Root/MaterialEx05/Magnitude_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-13.83725, 162.47076)
+            float2 ui:nodegraph:node:size = (119.5, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Add_6"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_13.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (586.6191, 63.088867)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Add_5"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_8.outputs:out>
+            float inputs:in2 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_12.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (524.49695, 288.3153)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "pos"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0, 0)
+            float2 inputs:value.connect = </Root/MaterialEx05/Subtract_5.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-786.2822, -1.421875)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_10"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/numWaves_1.outputs:out>
+            float inputs:in2 = -1
+            float inputs:in2.connect = None
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (257.43155, 277.29156)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_2"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_1.outputs:out>
+            float inputs:in2 = 20
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (500.18774, -286.35236)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Divide"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Add_2.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (679.0668, -284.08972)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Sin_1"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/MaterialEx05/Multiply_11.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (747.74677, 290.4737)
+            float2 ui:nodegraph:node:size = (118, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "freq"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 2.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-500.3681, -161.06772)
+            float2 ui:nodegraph:node:size = (115, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "center"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0.5, -0.5)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-486.1527, -19.760315)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "freq_1"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 2.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-504.70856, 187.23315)
+            float2 ui:nodegraph:node:size = (123.5, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Exp"
+        {
+            uniform token info:id = "ND_exp_float"
+            float inputs:in.connect = </Root/MaterialEx05/Magnitude.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-9.496796, -185.83008)
+            float2 ui:nodegraph:node:size = (114.5, 40)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Add_25"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_7.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_9.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (985.3396, -39.64669)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_3"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_4.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (433.96643, -111.22064)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Magnitude"
+        {
+            uniform token info:id = "ND_magnitude_vector2"
+            float2 inputs:in.connect = </Root/MaterialEx05/Subtract_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-186.03426, -183.34131)
+            float2 ui:nodegraph:node:size = (152, 40)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Subtract_2"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/pos.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx05/center_1.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-348.8453, 164.90216)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_14"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_1.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/d_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (409.46814, 62.19574)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Add_3"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_3.outputs:out>
+            float inputs:in2 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_5.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (528.83746, -59.985535)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_6"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Add_3.outputs:out>
+            float inputs:in2 = 6.283
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (609.4176, -53.523376)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Magnitude_1"
+        {
+            uniform token info:id = "ND_magnitude_vector2"
+            float2 inputs:in.connect = </Root/MaterialEx05/Subtract_2.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-190.37473, 164.95953)
+            float2 ui:nodegraph:node:size = (164.5, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Add_2"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_2.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (590.9596, -285.21198)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_5"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/t.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/freq.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (438.9693, -5.182495)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "numWaves"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 10
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-492.1521, -88.98297)
+            float2 ui:nodegraph:node:size = (152, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Add_1"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Exp.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (103.896286, -180.51544)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_9"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Divide_1.outputs:out>
+            float inputs:in2 = 6.283
+            float inputs:in2.connect = </Root/MaterialEx05/Sin_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (823.705, 161.56415)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_4"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/numWaves.outputs:out>
+            float inputs:in2 = -1
+            float inputs:in2.connect = None
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (261.772, -71.00928)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_13"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Multiply_14.outputs:out>
+            float inputs:in2 = 20
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (495.84723, 61.948486)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "center_1"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (-0.5, 0.5)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-490.49316, 328.54053)
+            float2 ui:nodegraph:node:size = (154, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Divide_1"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1 = 1
+            float inputs:in2.connect = </Root/MaterialEx05/Add_6.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (674.72626, 64.21112)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/d.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (413.80865, -286.1051)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_11"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Add_5.outputs:out>
+            float inputs:in2 = 6.283
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (605.0771, 294.77747)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_12"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/t.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/freq_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (434.62878, 343.11835)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "d"
+        {
+            uniform token info:id = "ND_ln_float"
+            float inputs:in.connect = </Root/MaterialEx05/Add_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (249.07672, -179.90582)
+            float2 ui:nodegraph:node:size = (139, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Subtract_1"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/MaterialEx05/pos.outputs:out>
+            float2 inputs:in2.connect = </Root/MaterialEx05/center.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-344.50488, -183.39868)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "d_1"
+        {
+            uniform token info:id = "ND_ln_float"
+            float inputs:in.connect = </Root/MaterialEx05/Add_4.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (244.73627, 168.39502)
+            float2 ui:nodegraph:node:size = (139, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_8"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/d_1.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx05/Multiply_10.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (429.62592, 237.0802)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Add_4"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Exp_1.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (99.55583, 167.7854)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "numWaves_1"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 10
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-496.49255, 259.31787)
+            float2 ui:nodegraph:node:size = (164.5, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Multiply_7"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx05/Divide.outputs:out>
+            float inputs:in2 = 6.283
+            float inputs:in2.connect = </Root/MaterialEx05/Sin.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (828.04553, -186.73672)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "Sin"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/MaterialEx05/Multiply_6.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (752.0873, -57.82715)
+            float2 ui:nodegraph:node:size = (116, 40)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+
+        def Shader "t"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0
+            float inputs:value.connect = </Root/MaterialEx05/t_0.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-780.56964, 70.17047)
+            float2 ui:nodegraph:node:size = (115, 53)
+            int ui:nodegraph:node:stackingOrder = 2066
+        }
+    }
+}
+

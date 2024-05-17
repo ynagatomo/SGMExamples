@@ -1,0 +1,449 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BA7CCE182BF6038E00173DDF /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = BA7CCE172BF6038E00173DDF /* RealityKitContent */; };
+		BA7CCE1A2BF6038E00173DDF /* SGMExamplesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7CCE192BF6038E00173DDF /* SGMExamplesApp.swift */; };
+		BA7CCE202BF6039000173DDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA7CCE1F2BF6039000173DDF /* Assets.xcassets */; };
+		BA7CCE232BF6039000173DDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA7CCE222BF6039000173DDF /* Preview Assets.xcassets */; };
+		BA7CCE2D2BF6152F00173DDF /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7CCE2C2BF6152F00173DDF /* ExampleView.swift */; };
+		BA7CCE2F2BF615C400173DDF /* AppStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7CCE2E2BF615C400173DDF /* AppStateModel.swift */; };
+		BA7CCE312BF6182C00173DDF /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7CCE302BF6182C00173DDF /* AppConstant.swift */; };
+		BAB48F4D2BF6304600539C4E /* ShaderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB48F4C2BF6304600539C4E /* ShaderListView.swift */; };
+		BAB48F532BF6B8C300539C4E /* ShaderExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB48F522BF6B8C300539C4E /* ShaderExample.swift */; };
+		BAB48F552BF6BA6400539C4E /* ShaderIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB48F542BF6BA6400539C4E /* ShaderIndex.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BA7CCE122BF6038E00173DDF /* SGMExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SGMExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA7CCE162BF6038E00173DDF /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		BA7CCE192BF6038E00173DDF /* SGMExamplesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGMExamplesApp.swift; sourceTree = "<group>"; };
+		BA7CCE1F2BF6039000173DDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA7CCE222BF6039000173DDF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BA7CCE242BF6039000173DDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA7CCE2B2BF6090300173DDF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BA7CCE2C2BF6152F00173DDF /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
+		BA7CCE2E2BF615C400173DDF /* AppStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateModel.swift; sourceTree = "<group>"; };
+		BA7CCE302BF6182C00173DDF /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
+		BAB48F4C2BF6304600539C4E /* ShaderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderListView.swift; sourceTree = "<group>"; };
+		BAB48F522BF6B8C300539C4E /* ShaderExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderExample.swift; sourceTree = "<group>"; };
+		BAB48F542BF6BA6400539C4E /* ShaderIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderIndex.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BA7CCE0F2BF6038E00173DDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA7CCE182BF6038E00173DDF /* RealityKitContent in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BA7CCE092BF6038E00173DDF = {
+			isa = PBXGroup;
+			children = (
+				BA7CCE2B2BF6090300173DDF /* README.md */,
+				BA7CCE142BF6038E00173DDF /* SGMExamples */,
+				BA7CCE152BF6038E00173DDF /* Packages */,
+				BA7CCE132BF6038E00173DDF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BA7CCE132BF6038E00173DDF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA7CCE122BF6038E00173DDF /* SGMExamples.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA7CCE142BF6038E00173DDF /* SGMExamples */ = {
+			isa = PBXGroup;
+			children = (
+				BAB48F4E2BF6B6D400539C4E /* App */,
+				BAB48F4F2BF6B6E600539C4E /* Views */,
+				BAB48F502BF6B70400539C4E /* AppStateModel */,
+				BAB48F512BF6B73900539C4E /* ShaderExample */,
+				BA7CCE1F2BF6039000173DDF /* Assets.xcassets */,
+				BA7CCE242BF6039000173DDF /* Info.plist */,
+				BA7CCE212BF6039000173DDF /* Preview Content */,
+			);
+			path = SGMExamples;
+			sourceTree = "<group>";
+		};
+		BA7CCE152BF6038E00173DDF /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				BA7CCE162BF6038E00173DDF /* RealityKitContent */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		BA7CCE212BF6039000173DDF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BA7CCE222BF6039000173DDF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BAB48F4E2BF6B6D400539C4E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BA7CCE192BF6038E00173DDF /* SGMExamplesApp.swift */,
+				BA7CCE302BF6182C00173DDF /* AppConstant.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BAB48F4F2BF6B6E600539C4E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BAB48F4C2BF6304600539C4E /* ShaderListView.swift */,
+				BA7CCE2C2BF6152F00173DDF /* ExampleView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BAB48F502BF6B70400539C4E /* AppStateModel */ = {
+			isa = PBXGroup;
+			children = (
+				BA7CCE2E2BF615C400173DDF /* AppStateModel.swift */,
+			);
+			path = AppStateModel;
+			sourceTree = "<group>";
+		};
+		BAB48F512BF6B73900539C4E /* ShaderExample */ = {
+			isa = PBXGroup;
+			children = (
+				BAB48F522BF6B8C300539C4E /* ShaderExample.swift */,
+				BAB48F542BF6BA6400539C4E /* ShaderIndex.swift */,
+			);
+			path = ShaderExample;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BA7CCE112BF6038E00173DDF /* SGMExamples */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA7CCE272BF6039000173DDF /* Build configuration list for PBXNativeTarget "SGMExamples" */;
+			buildPhases = (
+				BA7CCE0E2BF6038E00173DDF /* Sources */,
+				BA7CCE0F2BF6038E00173DDF /* Frameworks */,
+				BA7CCE102BF6038E00173DDF /* Resources */,
+				BA7CCE2A2BF603D000173DDF /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SGMExamples;
+			packageProductDependencies = (
+				BA7CCE172BF6038E00173DDF /* RealityKitContent */,
+			);
+			productName = SGMExamples;
+			productReference = BA7CCE122BF6038E00173DDF /* SGMExamples.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BA7CCE0A2BF6038E00173DDF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					BA7CCE112BF6038E00173DDF = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = BA7CCE0D2BF6038E00173DDF /* Build configuration list for PBXProject "SGMExamples" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BA7CCE092BF6038E00173DDF;
+			productRefGroup = BA7CCE132BF6038E00173DDF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BA7CCE112BF6038E00173DDF /* SGMExamples */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BA7CCE102BF6038E00173DDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA7CCE232BF6039000173DDF /* Preview Assets.xcassets in Resources */,
+				BA7CCE202BF6039000173DDF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BA7CCE2A2BF603D000173DDF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BA7CCE0E2BF6038E00173DDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA7CCE2D2BF6152F00173DDF /* ExampleView.swift in Sources */,
+				BA7CCE1A2BF6038E00173DDF /* SGMExamplesApp.swift in Sources */,
+				BAB48F552BF6BA6400539C4E /* ShaderIndex.swift in Sources */,
+				BA7CCE312BF6182C00173DDF /* AppConstant.swift in Sources */,
+				BAB48F532BF6B8C300539C4E /* ShaderExample.swift in Sources */,
+				BAB48F4D2BF6304600539C4E /* ShaderListView.swift in Sources */,
+				BA7CCE2F2BF615C400173DDF /* AppStateModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BA7CCE252BF6039000173DDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = xros;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				XROS_DEPLOYMENT_TARGET = 1.2;
+			};
+			name = Debug;
+		};
+		BA7CCE262BF6039000173DDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.2;
+			};
+			name = Release;
+		};
+		BA7CCE282BF6039000173DDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SGMExamples/Preview Content\"";
+				DEVELOPMENT_TEAM = J5CY9Q9UP5;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SGM Examples";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atarayosd.SGMExamples;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		BA7CCE292BF6039000173DDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SGMExamples/Preview Content\"";
+				DEVELOPMENT_TEAM = J5CY9Q9UP5;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SGM Examples";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atarayosd.SGMExamples;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BA7CCE0D2BF6038E00173DDF /* Build configuration list for PBXProject "SGMExamples" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA7CCE252BF6039000173DDF /* Debug */,
+				BA7CCE262BF6039000173DDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA7CCE272BF6039000173DDF /* Build configuration list for PBXNativeTarget "SGMExamples" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA7CCE282BF6039000173DDF /* Debug */,
+				BA7CCE292BF6039000173DDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BA7CCE172BF6038E00173DDF /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = BA7CCE0A2BF6038E00173DDF /* Project object */;
+}

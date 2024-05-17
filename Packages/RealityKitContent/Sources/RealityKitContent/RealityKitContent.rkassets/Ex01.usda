@@ -1,0 +1,120 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Sphere", "MaterialEx01"]
+    def Sphere "Sphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/MaterialEx01> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.45
+    }
+
+    def Material "MaterialEx01"
+    {
+        prepend token outputs:mtlx:surface.connect = </Root/MaterialEx01/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (440.2683, -26.931688)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 73
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            color3f inputs:diffuseColor = (0.46135616, 0.14605498, 0.15283811) (
+                colorSpace = "srgb_texture"
+            )
+            color3f inputs:diffuseColor.connect = </Root/MaterialEx01/Convert.outputs:out>
+            float inputs:metallic = 1
+            float inputs:opacity
+            float inputs:roughness = 0.3
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (234.53453, 29.637802)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 75
+        }
+
+        def Shader "Position"
+        {
+            uniform token info:id = "ND_position_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-340.32782, -8.563517)
+            float2 ui:nodegraph:node:size = (133.5, 40)
+            int ui:nodegraph:node:stackingOrder = 83
+        }
+
+        def Shader "Convert"
+        {
+            uniform token info:id = "ND_convert_vector3_color3"
+            float3 inputs:in.connect = </Root/MaterialEx01/Divide.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (48.96914, -0.06687246)
+            float2 ui:nodegraph:node:size = (135.5, 40)
+            int ui:nodegraph:node:stackingOrder = 77
+        }
+
+        def Shader "Time"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-632.1765, 102.45777)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 89
+        }
+
+        def Shader "Sin"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/MaterialEx01/Time.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-473.91046, 101.50459)
+            float2 ui:nodegraph:node:size = (116, 40)
+            int ui:nodegraph:node:stackingOrder = 87
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_vector3FA"
+            prepend float3 inputs:in1.connect = </Root/MaterialEx01/Position.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx01/Absval.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-205.29599, 73.63822)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 81
+        }
+
+        def Shader "Divide"
+        {
+            uniform token info:id = "ND_divide_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx01/Add.outputs:out>
+            float3 inputs:in2 = (2, 2, 2)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-98.41948, 0.76122236)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 79
+        }
+
+        def Shader "Absval"
+        {
+            uniform token info:id = "ND_absval_float"
+            float inputs:in.connect = </Root/MaterialEx01/Sin.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-331.52493, 99.861336)
+            float2 ui:nodegraph:node:size = (121.5, 53)
+            int ui:nodegraph:node:stackingOrder = 85
+        }
+    }
+}
+
