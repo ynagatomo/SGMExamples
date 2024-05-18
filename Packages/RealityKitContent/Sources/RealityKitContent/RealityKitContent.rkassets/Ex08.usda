@@ -52,7 +52,7 @@ def Xform "Root"
             token outputs:out
             float2 ui:nodegraph:node:pos = (-133.13495, 400.09323)
             float2 ui:nodegraph:node:size = (159.5, 307)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
             string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
         }
 
@@ -65,7 +65,7 @@ def Xform "Root"
             float outputs:out
             float2 ui:nodegraph:node:pos = (-1318.036, 375.86105)
             float2 ui:nodegraph:node:size = (61.5, 36.5)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Time"
@@ -74,7 +74,7 @@ def Xform "Root"
             float outputs:out
             float2 ui:nodegraph:node:pos = (-1545.5695, 367.14188)
             float2 ui:nodegraph:node:size = (122.5, 53)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Divide"
@@ -85,7 +85,7 @@ def Xform "Root"
             float outputs:out
             float2 ui:nodegraph:node:pos = (-1244.163, 384.89664)
             float2 ui:nodegraph:node:size = (61.5, 36)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Sin"
@@ -95,7 +95,7 @@ def Xform "Root"
             float outputs:out
             float2 ui:nodegraph:node:pos = (-1417.6028, 366.98)
             float2 ui:nodegraph:node:size = (116, 40)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Noise2D"
@@ -107,7 +107,7 @@ def Xform "Root"
             float outputs:out
             float2 ui:nodegraph:node:pos = (-1072.235, 215.11006)
             float2 ui:nodegraph:node:size = (148.5, 145)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Texcoord"
@@ -116,7 +116,7 @@ def Xform "Root"
             float2 outputs:out
             float2 ui:nodegraph:node:pos = (-1407.5166, 240.57834)
             float2 ui:nodegraph:node:size = (180.5, 53)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Multiply"
@@ -127,7 +127,7 @@ def Xform "Root"
             float2 outputs:out
             float2 ui:nodegraph:node:pos = (-1239.9606, 242.75264)
             float2 ui:nodegraph:node:size = (60, 36)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Ifgreater_1"
@@ -140,7 +140,7 @@ def Xform "Root"
             color4f outputs:out
             float2 ui:nodegraph:node:pos = (-652.7713, 539.6466)
             float2 ui:nodegraph:node:size = (113.5, 163)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Image"
@@ -152,7 +152,7 @@ def Xform "Root"
             color4f outputs:out
             float2 ui:nodegraph:node:pos = (-1288.741, 527.2869)
             float2 ui:nodegraph:node:size = (148.5, 199)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Separate4"
@@ -165,7 +165,7 @@ def Xform "Root"
             float outputs:outr
             float2 ui:nodegraph:node:pos = (-510.02136, 615.5495)
             float2 ui:nodegraph:node:size = (115.5, 163)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Combine3_1"
@@ -177,7 +177,7 @@ def Xform "Root"
             color3f outputs:out
             float2 ui:nodegraph:node:pos = (-340.0534, 365.98615)
             float2 ui:nodegraph:node:size = (157, 54)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Base_Color"
@@ -189,7 +189,7 @@ def Xform "Root"
             color4f outputs:out
             float2 ui:nodegraph:node:pos = (-1294.3197, 745.685)
             float2 ui:nodegraph:node:size = (157, 53)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Ifgreater_2"
@@ -202,7 +202,7 @@ def Xform "Root"
             color4f outputs:out
             float2 ui:nodegraph:node:pos = (-830.59393, 277.5717)
             float2 ui:nodegraph:node:size = (117, 163)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Add_1"
@@ -214,7 +214,7 @@ def Xform "Root"
             float outputs:out
             float2 ui:nodegraph:node:pos = (-1086.3646, 385.87546)
             float2 ui:nodegraph:node:size = (61.5, 36.5)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
 
         def Shader "Line_Color"
@@ -226,7 +226,7 @@ def Xform "Root"
             color4f outputs:out
             float2 ui:nodegraph:node:pos = (-1288.5363, 678.02124)
             float2 ui:nodegraph:node:size = (152.5, 53)
-            int ui:nodegraph:node:stackingOrder = 843
+            int ui:nodegraph:node:stackingOrder = 922
         }
     }
 }

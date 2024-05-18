@@ -24,6 +24,7 @@ Examples:
 1. Fresnel Effect 2
 1. Transition Animation - Wipe
 1. Transition Animation - Dissolve
+1. Fresnel Effect 3
 
 ![Image](assets/ss02.jpg)
 

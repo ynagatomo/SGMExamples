@@ -38,6 +38,9 @@ enum ShaderIndex {
                       exampleSceneName: "Ex07", thumbnailImage: "ex07"),
         ShaderExample(id: 10, name: "Dissolve Transition", category: "",
                       description: "Transition between transparent and an image",
-                      exampleSceneName: "Ex08", thumbnailImage: "ex08")
+                      exampleSceneName: "Ex08", thumbnailImage: "ex08"),
+        ShaderExample(id: 11, name: "Fresnel Effect", category: "",
+                      description: "Adjust power value to modify its contrast.",
+                      exampleSceneName: "Ex06b", thumbnailImage: "ex06b")
     ]
 }

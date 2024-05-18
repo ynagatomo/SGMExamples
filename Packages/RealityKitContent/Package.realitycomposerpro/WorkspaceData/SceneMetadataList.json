@@ -24,7 +24,7 @@
       [
         "1A55FBC1-0B71-445B-A55A-15FFD39A2B77",
         "Root",
-        "Sphere"
+        "MaterialEx06"
       ],
       {
         "isExpanded" : true,
@@ -33,7 +33,7 @@
       [
         "1A55FBC1-0B71-445B-A55A-15FFD39A2B77",
         "Root",
-        "MaterialEx06"
+        "Sphere"
       ],
       {
         "isExpanded" : true,
@@ -66,8 +66,7 @@
     "objectMetadataList" : [
       [
         "6A96437E-6FDD-4ABF-8F8D-EA914AFD7954",
-        "Root",
-        "Sphere"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -84,7 +83,8 @@
       },
       [
         "6A96437E-6FDD-4ABF-8F8D-EA914AFD7954",
-        "Root"
+        "Root",
+        "Sphere"
       ],
       {
         "isExpanded" : true,
@@ -105,7 +105,8 @@
       },
       [
         "036FA7CE-56F1-4106-ABD4-3F2DD5A1C008",
-        "Root"
+        "Root",
+        "Sphere"
       ],
       {
         "isExpanded" : true,
@@ -113,8 +114,7 @@
       },
       [
         "036FA7CE-56F1-4106-ABD4-3F2DD5A1C008",
-        "Root",
-        "Sphere"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -138,8 +138,7 @@
     "objectMetadataList" : [
       [
         "245EC209-D613-4B46-8F79-75F5785E1EA1",
-        "Root",
-        "Sphere"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -147,7 +146,8 @@
       },
       [
         "245EC209-D613-4B46-8F79-75F5785E1EA1",
-        "Root"
+        "Root",
+        "Sphere"
       ],
       {
         "isExpanded" : true,
@@ -168,6 +168,15 @@
     "objectMetadataList" : [
       [
         "4963A270-5B71-4F27-B026-2C5D0B381753",
+        "Root",
+        "MaterialEx02"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "4963A270-5B71-4F27-B026-2C5D0B381753",
         "Root"
       ],
       {
@@ -178,15 +187,6 @@
         "4963A270-5B71-4F27-B026-2C5D0B381753",
         "Root",
         "Sphere"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "4963A270-5B71-4F27-B026-2C5D0B381753",
-        "Root",
-        "MaterialEx02"
       ],
       {
         "isExpanded" : true,
@@ -219,7 +219,7 @@
       [
         "A6C12A48-16B6-484B-A0E6-33C0CB56CD80",
         "Root",
-        "MaterialEx07"
+        "Sphere"
       ],
       {
         "isExpanded" : true,
@@ -228,7 +228,7 @@
       [
         "A6C12A48-16B6-484B-A0E6-33C0CB56CD80",
         "Root",
-        "Sphere"
+        "MaterialEx07"
       ],
       {
         "isExpanded" : true,
@@ -240,8 +240,7 @@
     "objectMetadataList" : [
       [
         "A9624CDA-8682-4D4D-85B6-3DE2958A1345",
-        "Root",
-        "MaterialEx05"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -258,7 +257,8 @@
       },
       [
         "A9624CDA-8682-4D4D-85B6-3DE2958A1345",
-        "Root"
+        "Root",
+        "MaterialEx05"
       ],
       {
         "isExpanded" : true,
@@ -268,6 +268,25 @@
   },
   "AF09ED6F-1707-48FD-8720-65B998362C09" : {
     "objectMetadataList" : [
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "GridMaterial",
+        "GridMaterial"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AF09ED6F-1707-48FD-8720-65B998362C09",
+        "Root",
+        "GridMaterial"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root"
@@ -289,25 +308,6 @@
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
         "Sphere_Right"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "GridMaterial"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AF09ED6F-1707-48FD-8720-65B998362C09",
-        "Root",
-        "GridMaterial",
-        "GridMaterial"
       ],
       {
         "isExpanded" : true,
@@ -350,7 +350,7 @@
       [
         "B50C36D0-6F41-4D7A-8236-0A4C0C055A85",
         "Root",
-        "InnerSphere"
+        "MaterialEx06a"
       ],
       {
         "isExpanded" : true,
@@ -359,7 +359,7 @@
       [
         "B50C36D0-6F41-4D7A-8236-0A4C0C055A85",
         "Root",
-        "MaterialEx06a"
+        "InnerSphere"
       ],
       {
         "isExpanded" : true,
@@ -388,6 +388,15 @@
     "objectMetadataList" : [
       [
         "BA25A025-756A-4791-983E-D2E709582157",
+        "Root",
+        "Sphere"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "BA25A025-756A-4791-983E-D2E709582157",
         "Root"
       ],
       {
@@ -398,15 +407,6 @@
         "BA25A025-756A-4791-983E-D2E709582157",
         "Root",
         "Cube"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "BA25A025-756A-4791-983E-D2E709582157",
-        "Root",
-        "Sphere"
       ],
       {
         "isExpanded" : true,
@@ -453,7 +453,9 @@
     "objectMetadataList" : [
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
-        "Root"
+        "Root",
+        "GridMaterial",
+        "GridMaterial"
       ],
       {
         "isExpanded" : true,
@@ -461,9 +463,37 @@
       },
       [
         "D66134B1-3681-4A8E-AFE5-29F257229F3B",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "F5809717-57CB-4272-AD8A-0DF1333FF6F4" : {
+    "objectMetadataList" : [
+      [
+        "F5809717-57CB-4272-AD8A-0DF1333FF6F4",
         "Root",
-        "GridMaterial",
-        "GridMaterial"
+        "MaterialEx06b"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F5809717-57CB-4272-AD8A-0DF1333FF6F4",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "F5809717-57CB-4272-AD8A-0DF1333FF6F4",
+        "Root",
+        "Sphere"
       ],
       {
         "isExpanded" : true,
