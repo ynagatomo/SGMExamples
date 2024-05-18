@@ -70,7 +70,7 @@ def Xform "Root"
             token outputs:out
             float2 ui:nodegraph:node:pos = (166.88281, 44.39453)
             float2 ui:nodegraph:node:size = (194.5, 181)
-            int ui:nodegraph:node:stackingOrder = 74
+            int ui:nodegraph:node:stackingOrder = 235
         }
 
         def Shader "ViewDirection"
@@ -79,7 +79,7 @@ def Xform "Root"
             float3 outputs:out
             float2 ui:nodegraph:node:pos = (-442.14844, 171.85938)
             float2 ui:nodegraph:node:size = (210, 53)
-            int ui:nodegraph:node:stackingOrder = 127
+            int ui:nodegraph:node:stackingOrder = 235
         }
 
         def Shader "Normal"
@@ -88,7 +88,7 @@ def Xform "Root"
             float3 outputs:out
             float2 ui:nodegraph:node:pos = (-411.03906, 249.8711)
             float2 ui:nodegraph:node:size = (128.5, 40)
-            int ui:nodegraph:node:stackingOrder = 127
+            int ui:nodegraph:node:stackingOrder = 235
         }
 
         def Shader "DotProduct"
@@ -99,7 +99,7 @@ def Xform "Root"
             float outputs:out
             float2 ui:nodegraph:node:pos = (-225.67969, 221.05469)
             float2 ui:nodegraph:node:size = (153.5, 53)
-            int ui:nodegraph:node:stackingOrder = 127
+            int ui:nodegraph:node:stackingOrder = 235
         }
 
         def Shader "Range"
@@ -115,7 +115,7 @@ def Xform "Root"
             float outputs:out
             float2 ui:nodegraph:node:pos = (-30.855469, 203.51953)
             float2 ui:nodegraph:node:size = (98, 217)
-            int ui:nodegraph:node:stackingOrder = 145
+            int ui:nodegraph:node:stackingOrder = 235
         }
 
         def Shader "Constant"
@@ -127,7 +127,7 @@ def Xform "Root"
             color3f outputs:out
             float2 ui:nodegraph:node:pos = (-209.59961, -50.98242)
             float2 ui:nodegraph:node:size = (151, 53)
-            int ui:nodegraph:node:stackingOrder = 144
+            int ui:nodegraph:node:stackingOrder = 235
         }
     }
 }

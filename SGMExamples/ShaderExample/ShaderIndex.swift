@@ -41,6 +41,9 @@ enum ShaderIndex {
                       exampleSceneName: "Ex08", thumbnailImage: "ex08"),
         ShaderExample(id: 11, name: "Fresnel Effect", category: "",
                       description: "Adjust power value to modify its contrast.",
-                      exampleSceneName: "Ex06b", thumbnailImage: "ex06b")
+                      exampleSceneName: "Ex06b", thumbnailImage: "ex06b"),
+        ShaderExample(id: 12, name: "Gaseous Movement", category: "",
+                      description: "Adjust the 3d-noise to modify its animation.",
+                      exampleSceneName: "Ex09", thumbnailImage: "ex09")
     ]
 }
