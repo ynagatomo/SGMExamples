@@ -7,8 +7,13 @@
 
 import Foundation
 
-struct ShaderExample: Identifiable { // , Hashable, Codable {
+struct ShaderExample: Identifiable {
+    enum Level {
+        case basic, advanced
+    }
     let id: Int
+    // [Level]
+    let level: Level
     // [Description]
     let name: String
     let category: String

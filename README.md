@@ -14,18 +14,18 @@ Some of them are based on Satoshi's MSL (Metal Shading Language) Examples. (Than
 
 Examples:
 
-1. Color Ball
-1. Blue Lines
-1. Blue and Green Lines
-1. Edge Filter
-1. Ripple
-1. Ripple 2
-1. Fresnel Effect
-1. Fresnel Effect 2
-1. Transition Animation - Wipe
-1. Transition Animation - Dissolve
-1. Fresnel Effect 3
-1. Gaseous Movement (3d Fractal Noise)
+1. [Basic] Color Ball
+1. [Advanced] Blue Lines
+1. [Advanced] Blue and Green Lines
+1. [Advanced] Edge Filter
+1. [Advanced] Ripple
+1. [Advanced] Ripple 2
+1. [Basic] Fresnel Effect
+1. [Basic] Fresnel Effect 2
+1. [Basic] Transition Animation - Wipe
+1. [Basic] Transition Animation - Dissolve
+1. [Basic] Fresnel Effect 3
+1. [Basic] Gaseous Movement (3d Fractal Noise)
 
 ![Image](assets/ss02.jpg)
 

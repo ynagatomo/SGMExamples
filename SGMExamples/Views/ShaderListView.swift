@@ -56,6 +56,9 @@ struct ShaderListView: View {
 
 struct ShaderItemView: View {
     let shaderItem: ShaderExample
+    var level: String {
+        shaderItem.level == .basic ? "Basic" : "Advanced"
+    }
 
     var body: some View {
         HStack {
@@ -72,7 +75,10 @@ struct ShaderItemView: View {
             }
 
             VStack(alignment: .leading) {
-                Text("No. \(shaderItem.id) " + shaderItem.category)
+                Text("No. \(shaderItem.id) "
+                     + shaderItem.category
+                     + " "
+                     + level)
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .padding(.leading, 8)
