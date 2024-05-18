@@ -61,6 +61,8 @@ struct ShaderItemView: View {
         HStack {
             if let thumbnail = shaderItem.thumbnailImage {
                 Image(thumbnail)
+                    .resizable()
+                    .scaledToFit()
                     .frame(width: 100, height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
             } else {

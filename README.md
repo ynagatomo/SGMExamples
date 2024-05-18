@@ -12,6 +12,21 @@ Some of them are based on Satoshi's MSL (Metal Shading Language) Examples. (Than
 
 ![Gif](assets/mv720pshort.gif)
 
+Examples:
+
+1. Color Ball
+1. Blue Lines
+1. Blue and Green Lines
+1. Edge Filter
+1. Ripple
+1. Ripple 2
+1. Fresnel Effect
+1. Fresnel Effect 2
+1. Transition Animation - Wipe
+1. Transition Animation - Dissolve
+
+![Image](assets/ss02.jpg)
+
 <!--
 ## Examples
 -->

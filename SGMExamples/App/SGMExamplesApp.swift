@@ -19,7 +19,7 @@ struct SGMExamplesApp: App {
         .defaultSize(width: 600, height: 800)
 
         WindowGroup(id: AppConstant.exampleWindowID, for: String.self) { $value in
-            ExampleView(sceneName: value ?? "")
+            ExampleView(sceneName: value ?? "Ex01")
                 .environment(appStateModel)
         }
         .windowStyle(.volumetric)

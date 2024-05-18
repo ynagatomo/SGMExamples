@@ -35,6 +35,9 @@ enum ShaderIndex {
                       exampleSceneName: "Ex06a", thumbnailImage: "ex06a"),
         ShaderExample(id: 9, name: "Transition Animation", category: "",
                       description: "Transition between transparent and an image",
-                      exampleSceneName: "Ex07", thumbnailImage: "ex07")
+                      exampleSceneName: "Ex07", thumbnailImage: "ex07"),
+        ShaderExample(id: 10, name: "Dissolve Transition", category: "",
+                      description: "Transition between transparent and an image",
+                      exampleSceneName: "Ex08", thumbnailImage: "ex08")
     ]
 }
