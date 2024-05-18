@@ -43,7 +43,7 @@ enum ShaderIndex {
                       description: "Adjust power value to modify its contrast.",
                       exampleSceneName: "Ex06b", thumbnailImage: "ex06b"),
         ShaderExample(id: 12, name: "Gaseous Movement", category: "",
-                      description: "Adjust the 3d-noise to modify its animation.",
+                      description: "Adjust the 3d Fractal Noise to modify its movement.",
                       exampleSceneName: "Ex09", thumbnailImage: "ex09")
     ]
 }

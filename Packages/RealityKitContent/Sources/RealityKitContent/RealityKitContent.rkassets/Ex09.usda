@@ -44,19 +44,6 @@ def Xform "Root"
             int ui:nodegraph:node:stackingOrder = 133
         }
 
-        def Shader "Noise3D"
-        {
-            uniform token info:id = "ND_noise3d_float"
-            float inputs:amplitude = 1
-            float inputs:pivot = 0.6
-            float3 inputs:position.connect = </Root/MaterialEx09/Combine3_1.outputs:out>
-            float outputs:out
-            float2 ui:nodegraph:node:pos = (-32.525017, -75.72834)
-            float2 ui:nodegraph:node:size = (105, 145)
-            int ui:nodegraph:node:stackingOrder = 272
-            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:amplitude"]
-        }
-
         def Shader "Texcoord"
         {
             uniform token info:id = "ND_texcoord_vector2"
@@ -105,7 +92,7 @@ def Xform "Root"
             uniform token info:id = "ND_mix_color3"
             color3f inputs:bg.connect = </Root/MaterialEx09/Color_2.outputs:out>
             color3f inputs:fg.connect = </Root/MaterialEx09/Color_1.outputs:out>
-            prepend float inputs:mix.connect = </Root/MaterialEx09/Noise3D.outputs:out>
+            float inputs:mix.connect = </Root/MaterialEx09/Fractal3D.outputs:out>
             color3f outputs:out
             float2 ui:nodegraph:node:pos = (317.61337, -53.934288)
             float2 ui:nodegraph:node:size = (109, 145)
@@ -155,6 +142,20 @@ def Xform "Root"
             float2 ui:nodegraph:node:pos = (108.881485, -183.49747)
             float2 ui:nodegraph:node:size = (151, 53)
             int ui:nodegraph:node:stackingOrder = 278
+        }
+
+        def Shader "Fractal3D"
+        {
+            uniform token info:id = "ND_fractal3d_float"
+            float inputs:amplitude
+            float inputs:diminish
+            float inputs:lacunarity
+            int inputs:octaves
+            float3 inputs:position.connect = </Root/MaterialEx09/Combine3_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (33.43575, -12.341937)
+            float2 ui:nodegraph:node:size = (130.5, 181)
+            int ui:nodegraph:node:stackingOrder = 288
         }
     }
 }
