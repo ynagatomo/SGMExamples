@@ -26,6 +26,7 @@ Examples:
 1. [Basic] Transition Animation - Dissolve
 1. [Basic] Fresnel Effect 3
 1. [Basic] Gaseous Movement (3d Fractal Noise)
+1. [Basic] Glass Ball (Environment Specular Radiance)
 
 ![Image](assets/ss02.jpg)
 

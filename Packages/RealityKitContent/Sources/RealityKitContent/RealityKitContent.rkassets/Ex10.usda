@@ -1,0 +1,89 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Sphere", "MaterialEx10"]
+    def Sphere "Sphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/MaterialEx10> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.45
+    }
+
+    def Material "MaterialEx10"
+    {
+        token outputs:mtlx:surface.connect = </Root/MaterialEx10/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (474.41406, 127.25781)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 721
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            color3f inputs:diffuseColor.connect = </Root/MaterialEx10/RealitykitEnvironmentRadiance.outputs:specularRadiance>
+            float inputs:ior = 1.5
+            float inputs:metallic
+            float3 inputs:normal
+            float inputs:occlusion = 1
+            float inputs:opacity
+            float inputs:roughness = 0
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (272.27344, 127.26953)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 721
+        }
+
+        def Shader "SurfaceViewDirection"
+        {
+            uniform token info:id = "ND_realitykit_surface_view_direction"
+            float3 outputs:viewDirection
+            float2 ui:nodegraph:node:pos = (-304.23584, 137.43224)
+            float2 ui:nodegraph:node:size = (216.5, 81)
+            int ui:nodegraph:node:stackingOrder = 721
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = []
+        }
+
+        def Shader "RealitykitEnvironmentRadiance"
+        {
+            uniform token info:id = "ND_realitykit_environment_radiance"
+            color3f inputs:baseColor = (0, 0, 0) (
+                colorSpace = "srgb_texture"
+            )
+            half inputs:metallic = 1.5
+            float3 inputs:normal.connect = </Root/MaterialEx10/Multiply_1.outputs:out>
+            half inputs:roughness = 0
+            half inputs:specular = 0
+            color3f outputs:diffuseRadiance
+            color3f outputs:specularRadiance
+            float2 ui:nodegraph:node:pos = (23.535126, 128.4755)
+            float2 ui:nodegraph:node:size = (244.5, 199)
+            int ui:nodegraph:node:stackingOrder = 721
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:specular", "inputs:metallic", "inputs:metallic", "inputs:roughness", "inputs:roughness", "inputs:baseColor"]
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx10/SurfaceViewDirection.outputs:viewDirection>
+            float3 inputs:in2 = (-1, -1, -1)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-146.94885, 168.05429)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 721
+        }
+    }
+}
+

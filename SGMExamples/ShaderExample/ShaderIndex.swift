@@ -56,6 +56,10 @@ enum ShaderIndex {
         ShaderExample(id: 12, level: .basic,
                       name: "Gaseous Movement", category: "",
                       description: "Adjust the 3d Fractal Noise to modify its movement.",
-                      exampleSceneName: "Ex09", thumbnailImage: "ex09")
+                      exampleSceneName: "Ex09", thumbnailImage: "ex09"),
+        ShaderExample(id: 13, level: .basic,
+                      name: "Glass Ball", category: "",
+                      description: "Uses the Environment Specular Radiance.",
+                      exampleSceneName: "Ex10", thumbnailImage: "ex10")
     ]
 }
