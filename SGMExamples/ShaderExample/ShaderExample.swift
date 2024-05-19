@@ -8,15 +8,21 @@
 import Foundation
 
 struct ShaderExample: Identifiable {
-    enum Level {
-        case basic, advanced
+    enum Level: String {
+        case basic = "Basic"
+        case advanced = "Advanced"
+    }
+    enum Category: String {
+        case vertex = "Vertex"
+        case segment = "Segment"
+        case both = "Vertex/Segment"
     }
     let id: Int
-    // [Level]
+    // [Type]
     let level: Level
+    let category: Category
     // [Description]
     let name: String
-    let category: String
     let description: String
     // [Example Scene]
     let exampleSceneName: String

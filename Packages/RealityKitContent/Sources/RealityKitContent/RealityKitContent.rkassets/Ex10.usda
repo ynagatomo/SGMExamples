@@ -10,9 +10,8 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Sphere", "MaterialEx10"]
+    reorder nameChildren = ["plane", "Sphere", "MaterialEx10"]
     def Sphere "Sphere" (
-        active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
