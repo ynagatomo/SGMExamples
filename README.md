@@ -28,6 +28,7 @@ Examples:
 1. [Basic] Gaseous Movement (3d Fractal Noise)
 1. [Basic] Glass Ball (Environment Specular Radiance)
 1. [Basic] Wave Animation (Caustics with WorleyNoise)
+1. [Basic] Water Fog (Adjusted according to water depth)
 
 ![Image](assets/ss02.jpg)
 

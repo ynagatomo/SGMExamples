@@ -1,0 +1,171 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Sphere", "MaterialEx12"]
+    def Sphere "Sphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/MaterialEx12> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.45
+        float3 xformOp:translate = (0, 0.38215917, 0.89151376)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Material "MaterialEx12"
+    {
+        prepend token outputs:mtlx:surface.connect = </Root/MaterialEx12/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (850.50476, -513.7132)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 937
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            color3f inputs:diffuseColor.connect = </Root/MaterialEx12/IfGreaterOrEqual_1.outputs:out>
+            float inputs:metallic
+            float3 inputs:normal
+            float inputs:opacity
+            float inputs:roughness = 0.8
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (645.8724, -528.7596)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 937
+        }
+
+        def Shader "Position"
+        {
+            uniform token info:id = "ND_position_vector3"
+            string inputs:space = "world"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-556.08545, -405.80798)
+            float2 ui:nodegraph:node:size = (133.5, 40)
+            int ui:nodegraph:node:stackingOrder = 937
+        }
+
+        def Shader "HSVAdjust"
+        {
+            uniform token info:id = "ND_hsvadjust_color3"
+            float3 inputs:amount = (0, 1, 1)
+            float3 inputs:amount.connect = </Root/MaterialEx12/AdjustValue.outputs:out>
+            color3f inputs:in.connect = </Root/MaterialEx12/Mix.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (219.3508, -347.66464)
+            float2 ui:nodegraph:node:size = (118, 127)
+            int ui:nodegraph:node:stackingOrder = 937
+        }
+
+        def Shader "Image"
+        {
+            uniform token info:id = "ND_image_color3"
+            asset inputs:file = @TextureImages/grid.png@
+            string inputs:filtertype
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-164.24524, -632.403)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 937
+        }
+
+        def Shader "Mix"
+        {
+            uniform token info:id = "ND_mix_color3"
+            color3f inputs:bg.connect = </Root/MaterialEx12/Water_Color.outputs:out>
+            color3f inputs:fg.connect = </Root/MaterialEx12/Image.outputs:out>
+            float inputs:mix = 0.1
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (31.75366, -398.1448)
+            float2 ui:nodegraph:node:size = (109, 145)
+            int ui:nodegraph:node:stackingOrder = 937
+        }
+
+        def Shader "IfGreaterOrEqual_1"
+        {
+            uniform token info:id = "ND_ifgreatereq_color3"
+            prepend color3f inputs:in1.connect = </Root/MaterialEx12/Image.outputs:out>
+            color3f inputs:in2.connect = </Root/MaterialEx12/HSVAdjust.outputs:out>
+            float inputs:value1.connect = </Root/MaterialEx12/Separate3_2.outputs:outy>
+            float inputs:value2
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (425.37067, -507.09497)
+            float2 ui:nodegraph:node:size = (169.5, 163)
+            int ui:nodegraph:node:stackingOrder = 938
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:value1"]
+        }
+
+        def Shader "Separate3_2"
+        {
+            uniform token info:id = "ND_separate3_vector3"
+            float3 inputs:in.connect = </Root/MaterialEx12/Position.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (-395.93478, -400.79327)
+            float2 ui:nodegraph:node:size = (130.5, 145)
+            int ui:nodegraph:node:stackingOrder = 937
+        }
+
+        def Shader "Add_1"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx12/Divide.outputs:out>
+            float inputs:in2 = 1
+            float inputs:in2.connect = None
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-122.902214, -261.3794)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 937
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in2"]
+        }
+
+        def Shader "Divide"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1.connect = </Root/MaterialEx12/Separate3_2.outputs:outy>
+            float inputs:in2 = 0.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-205.4246, -260.40665)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 940
+        }
+
+        def Shader "Water_Color"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.1125134, 0.7914612, 1) (
+                colorSpace = "srgb_texture"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-149.75066, -349.3347)
+            float2 ui:nodegraph:node:size = (163, 53)
+            int ui:nodegraph:node:stackingOrder = 937
+        }
+
+        def Shader "AdjustValue"
+        {
+            uniform token info:id = "ND_combine3_vector3"
+            float inputs:in1
+            float inputs:in2 = 1
+            float inputs:in3 = 1
+            float inputs:in3.connect = </Root/MaterialEx12/Add_1.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (16.030327, -280.3278)
+            float2 ui:nodegraph:node:size = (154.5, 54)
+            int ui:nodegraph:node:stackingOrder = 937
+        }
+    }
+}
+

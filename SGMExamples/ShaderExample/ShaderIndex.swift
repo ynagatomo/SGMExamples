@@ -64,6 +64,10 @@ enum ShaderIndex {
         ShaderExample(id: 14, level: .basic, category: .both,
                       name: "Wave",
                       description: "Caustics with WorleyNoise",
-                      exampleSceneName: "Ex11", thumbnailImage: "ex11")
+                      exampleSceneName: "Ex11", thumbnailImage: "ex11"),
+        ShaderExample(id: 15, level: .basic, category: .segment,
+                      name: "Water Fog",
+                      description: "The fog is adjusted according to water depth.",
+                      exampleSceneName: "Ex12", thumbnailImage: "ex12")
     ]
 }

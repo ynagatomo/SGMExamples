@@ -19,15 +19,6 @@ def Xform "Root"
         float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
         int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 187
 
-        def Shader "PreviewSurface"
-        {
-            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
-            token outputs:out
-            float2 ui:nodegraph:node:pos = (487.1289, 202.7168)
-            float2 ui:nodegraph:node:size = (148.5, 199)
-            int ui:nodegraph:node:stackingOrder = 100
-        }
-
         def Shader "UnlitSurface"
         {
             uniform token info:id = "ND_realitykit_unlit_surfaceshader"
