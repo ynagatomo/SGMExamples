@@ -29,6 +29,7 @@ Examples:
 1. [Basic] Glass Ball (Environment Specular Radiance)
 1. [Basic] Wave Animation (Caustics with WorleyNoise)
 1. [Basic] Water Fog (Adjusted according to water depth)
+1. [Basic] One-time Dissolve (not repeating)
 
 ![Image](assets/ss02.jpg)
 

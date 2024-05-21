@@ -68,6 +68,10 @@ enum ShaderIndex {
         ShaderExample(id: 15, level: .basic, category: .segment,
                       name: "Water Fog",
                       description: "The fog is adjusted according to water depth.",
-                      exampleSceneName: "Ex12", thumbnailImage: "ex12")
+                      exampleSceneName: "Ex12", thumbnailImage: "ex12"),
+        ShaderExample(id: 16, level: .basic, category: .segment,
+                      name: "One-time Dissolve",
+                      description: "One-time dissolve effect (not repeating).",
+                      exampleSceneName: "Ex08a", thumbnailImage: "ex08")
     ]
 }
