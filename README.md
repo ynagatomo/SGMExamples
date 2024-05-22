@@ -30,6 +30,7 @@ Examples:
 1. [Basic] Wave Animation (Caustics with WorleyNoise)
 1. [Basic] Water Fog (Adjusted according to water depth)
 1. [Basic] One-time Dissolve (not repeating)
+1. [Basic] Directional Lighting (Lambert diffuse reflection + Phong Specular reflection + Ambient Light)
 
 ![Image](assets/ss02.jpg)
 

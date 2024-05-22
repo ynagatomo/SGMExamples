@@ -72,6 +72,10 @@ enum ShaderIndex {
         ShaderExample(id: 16, level: .basic, category: .segment,
                       name: "One-time Dissolve",
                       description: "One-time dissolve effect (not repeating).",
-                      exampleSceneName: "Ex08a", thumbnailImage: "ex08")
+                      exampleSceneName: "Ex08a", thumbnailImage: "ex08"),
+        ShaderExample(id: 17, level: .basic, category: .segment,
+                      name: "Directional Lighting",
+                      description: "Lambert diffuse reflection + Phong Specular reflection + Ambient Light",
+                      exampleSceneName: "Ex13", thumbnailImage: "ex13")
     ]
 }
