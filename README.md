@@ -31,6 +31,7 @@ Examples:
 1. [Basic] Water Fog (Adjusted according to water depth)
 1. [Basic] One-time Dissolve (not repeating)
 1. [Basic] Directional Lighting (Lambert diffuse reflection + Phong Specular reflection + Ambient Light)
+1. [Basic] Rim Lighting (Backlit)
 
 ![Image](assets/ss02.jpg)
 

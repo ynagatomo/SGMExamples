@@ -1,0 +1,248 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Sphere", "MaterialEx14"]
+    def Sphere "Sphere" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/MaterialEx14> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.45
+    }
+
+    def Material "MaterialEx14"
+    {
+        token outputs:mtlx:surface.connect = </Root/MaterialEx14/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (499.09048, -308.0153)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 308
+
+        def Shader "DirectionalLight_direction"
+        {
+            uniform token info:id = "ND_constant_vector3"
+            float3 inputs:value = (0, 0, 1)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-907.85126, -114.141205)
+            float2 ui:nodegraph:node:size = (244.5, 53)
+            int ui:nodegraph:node:stackingOrder = 205
+        }
+
+        def Shader "SurfaceViewDirection"
+        {
+            uniform token info:id = "ND_realitykit_surface_view_direction"
+            float3 outputs:viewDirection
+            float2 ui:nodegraph:node:pos = (-895.04266, -31.598236)
+            float2 ui:nodegraph:node:size = (216.5, 81)
+            int ui:nodegraph:node:stackingOrder = 163
+        }
+
+        def Shader "Normal"
+        {
+            uniform token info:id = "ND_normal_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-860.01135, 46.273647)
+            float2 ui:nodegraph:node:size = (128.5, 40)
+            int ui:nodegraph:node:stackingOrder = 275
+        }
+
+        def Shader "Normalize"
+        {
+            uniform token info:id = "ND_normalize_vector3"
+            float3 inputs:in.connect = </Root/MaterialEx14/DirectionalLight_direction.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-698.5544, -114.30136)
+            float2 ui:nodegraph:node:size = (149, 40)
+            int ui:nodegraph:node:stackingOrder = 163
+        }
+
+        def Shader "DotProduct"
+        {
+            uniform token info:id = "ND_dotproduct_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx14/Normalize.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx14/Normal.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-504.86295, -101.21933)
+            float2 ui:nodegraph:node:size = (153.5, 53)
+            int ui:nodegraph:node:stackingOrder = 163
+        }
+
+        def Shader "Max"
+        {
+            uniform token info:id = "ND_max_float"
+            float inputs:in1.connect = </Root/MaterialEx14/DotProduct.outputs:out>
+            float inputs:in2
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-349.06998, -92.82089)
+            float2 ui:nodegraph:node:size = (113, 40)
+            int ui:nodegraph:node:stackingOrder = 163
+        }
+
+        def Shader "Oneminus"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/MaterialEx14/Max.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-205.43716, -106.31308)
+            float2 ui:nodegraph:node:size = (158, 109)
+            int ui:nodegraph:node:stackingOrder = 163
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx14/SurfaceViewDirection.outputs:viewDirection>
+            float3 inputs:in2 = (-1, -1, -1)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-723.2632, -43.561977)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 277
+        }
+
+        def Shader "DotProduct_1"
+        {
+            uniform token info:id = "ND_dotproduct_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx14/Multiply.outputs:out>
+            float3 inputs:in2.connect = </Root/MaterialEx14/Normal.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-557.84735, 12.444733)
+            float2 ui:nodegraph:node:size = (166, 53)
+            int ui:nodegraph:node:stackingOrder = 163
+        }
+
+        def Shader "Max_1"
+        {
+            uniform token info:id = "ND_max_float"
+            float inputs:in1.connect = </Root/MaterialEx14/DotProduct_1.outputs:out>
+            float inputs:in2
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-395.73013, 21.651764)
+            float2 ui:nodegraph:node:size = (121.5, 53)
+            int ui:nodegraph:node:stackingOrder = 163
+        }
+
+        def Shader "Oneminus_1"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/MaterialEx14/Max_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-207.78482, 24.272858)
+            float2 ui:nodegraph:node:size = (158, 109)
+            int ui:nodegraph:node:stackingOrder = 163
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx14/Oneminus.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx14/Oneminus_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-68.456696, -37.867767)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 163
+        }
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            bool inputs:applyPostProcessToneMap
+            color3f inputs:color.connect = </Root/MaterialEx14/Multiply_2.outputs:out>
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (280.38458, -308.67612)
+            float2 ui:nodegraph:node:size = (194.5, 181)
+            int ui:nodegraph:node:stackingOrder = 308
+        }
+
+        def Shader "Power"
+        {
+            uniform token info:id = "ND_power_float"
+            float inputs:in1.connect = </Root/MaterialEx14/Multiply_1.outputs:out>
+            float inputs:in2 = 3
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (37.472992, -35.6373)
+            float2 ui:nodegraph:node:size = (123.5, 40)
+            int ui:nodegraph:node:stackingOrder = 309
+        }
+
+        def Shader "DirectionalLight_Color"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.6775055, 1, 0.9767557) (
+                colorSpace = "srgb_texture"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-899.863, -179.74277)
+            float2 ui:nodegraph:node:size = (225, 53)
+            int ui:nodegraph:node:stackingOrder = 163
+        }
+
+        def Shader "Ambient"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0.01
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (35.505947, 95.34455)
+            float2 ui:nodegraph:node:size = (137, 53)
+            int ui:nodegraph:node:stackingOrder = 311
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx14/Power.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx14/Ambient.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (189.29796, 8.514222)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 199
+        }
+
+        def Shader "Image_1"
+        {
+            uniform token info:id = "ND_image_color3"
+            asset inputs:file = @TextureImages/grid.png@
+            string inputs:filtertype
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-201.71098, -319.7694)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 279
+        }
+
+        def Shader "Multiply_3"
+        {
+            uniform token info:id = "ND_multiply_color3FA"
+            color3f inputs:in1.connect = </Root/MaterialEx14/DirectionalLight_Color.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx14/Add.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (49.733562, -142.34338)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 281
+        }
+
+        def Shader "Multiply_2"
+        {
+            uniform token info:id = "ND_multiply_color3"
+            prepend color3f inputs:in1.connect = </Root/MaterialEx14/Image_1.outputs:out>
+            color3f inputs:in2.connect = </Root/MaterialEx14/Multiply_3.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (111.54801, -229.31877)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 283
+        }
+    }
+}
+

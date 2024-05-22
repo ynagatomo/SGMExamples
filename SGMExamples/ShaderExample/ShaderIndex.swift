@@ -76,6 +76,10 @@ enum ShaderIndex {
         ShaderExample(id: 17, level: .basic, category: .segment,
                       name: "Directional Lighting",
                       description: "Lambert diffuse reflection + Phong Specular reflection + Ambient Light",
-                      exampleSceneName: "Ex13", thumbnailImage: "ex13")
+                      exampleSceneName: "Ex13", thumbnailImage: "ex13"),
+        ShaderExample(id: 18, level: .basic, category: .segment,
+                      name: "Rim Lighting",
+                      description: "Rim Light (Backlit)",
+                      exampleSceneName: "Ex14", thumbnailImage: "ex14")
     ]
 }
