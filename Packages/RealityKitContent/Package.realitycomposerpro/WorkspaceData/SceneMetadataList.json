@@ -394,6 +394,36 @@
       }
     ]
   },
+  "37023F06-F2E0-45B4-9098-E108ED5582E2" : {
+    "objectMetadataList" : [
+      [
+        "37023F06-F2E0-45B4-9098-E108ED5582E2",
+        "Root",
+        "Sphere"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "37023F06-F2E0-45B4-9098-E108ED5582E2",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "37023F06-F2E0-45B4-9098-E108ED5582E2",
+        "Root",
+        "Material"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "66168B71-AB05-424E-8B6C-D33D6E61B08F" : {
     "objectMetadataList" : [
       [
