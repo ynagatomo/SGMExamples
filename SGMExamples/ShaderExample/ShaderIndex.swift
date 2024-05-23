@@ -80,6 +80,10 @@ enum ShaderIndex {
         ShaderExample(id: 18, level: .basic, category: .segment,
                       name: "Rim Lighting",
                       description: "Rim Light (Backlit)",
-                      exampleSceneName: "Ex14", thumbnailImage: "ex14")
+                      exampleSceneName: "Ex14", thumbnailImage: "ex14"),
+        ShaderExample(id: 19, level: .basic, category: .both,
+                      name: "Hight map morphing",
+                      description: "Hight map with 3D-Noise",
+                      exampleSceneName: "Ex15", thumbnailImage: "ex15")
     ]
 }
