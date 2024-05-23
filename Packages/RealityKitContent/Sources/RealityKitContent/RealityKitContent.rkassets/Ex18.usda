@@ -1,0 +1,222 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Sphere", "MaterialEx18"]
+    def Sphere "Sphere" (
+        active = false
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/Sphere/DefaultMaterial>
+        double radius = 0.1
+
+        def Material "DefaultMaterial"
+        {
+            prepend token outputs:surface.connect = </Root/Sphere/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Material "MaterialEx18"
+    {
+        prepend token outputs:mtlx:surface.connect = </Root/MaterialEx18/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (684.8711, -132.43454)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 617
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            float inputs:clearcoat
+            float inputs:clearcoatRoughness
+            color3f inputs:diffuseColor.connect = </Root/MaterialEx18/Remap.outputs:out>
+            color3f inputs:emissiveColor
+            float inputs:metallic
+            float3 inputs:normal
+            float inputs:opacity
+            float inputs:roughness
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (471.09085, -65.21039)
+            float2 ui:nodegraph:node:size = (159.5, 307)
+            int ui:nodegraph:node:stackingOrder = 615
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+        }
+
+        def Shader "Position"
+        {
+            uniform token info:id = "ND_position_vector3"
+            string inputs:space = "world"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-471.20908, -205.82526)
+            float2 ui:nodegraph:node:size = (133.5, 40)
+            int ui:nodegraph:node:stackingOrder = 619
+        }
+
+        def Shader "SurfaceViewDirection"
+        {
+            uniform token info:id = "ND_realitykit_surface_view_direction"
+            float3 outputs:viewDirection
+            float2 ui:nodegraph:node:pos = (-533.9564, -102.46641)
+            float2 ui:nodegraph:node:size = (216.5, 81)
+            int ui:nodegraph:node:stackingOrder = 595
+        }
+
+        def Shader "Constant"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = -2
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-501.0931, -4.3531303)
+            float2 ui:nodegraph:node:size = (141.5, 53)
+            int ui:nodegraph:node:stackingOrder = 595
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_vector3FA"
+            prepend float3 inputs:in1.connect = </Root/MaterialEx18/SurfaceViewDirection.outputs:viewDirection>
+            float inputs:in2.connect = </Root/MaterialEx18/Constant.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-341.0892, -43.79063)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 595
+        }
+
+        def Shader "Combine3"
+        {
+            uniform token info:id = "ND_combine3_color3"
+            float inputs:in1.connect = </Root/MaterialEx18/WorleyNoise2D.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx18/WorleyNoise2D.outputs:out>
+            float inputs:in3.connect = </Root/MaterialEx18/WorleyNoise2D.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (136.42395, 37.477207)
+            float2 ui:nodegraph:node:size = (145, 54)
+            int ui:nodegraph:node:stackingOrder = 613
+        }
+
+        def Shader "Separate3"
+        {
+            uniform token info:id = "ND_separate3_vector3"
+            float3 inputs:in.connect = </Root/MaterialEx18/Position.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (-220.82118, -171.85242)
+            float2 ui:nodegraph:node:size = (115.5, 145)
+            int ui:nodegraph:node:stackingOrder = 597
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx18/Separate3.outputs:outx>
+            float inputs:in2.connect = </Root/MaterialEx18/Separate3_1.outputs:outx>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-67.653206, -209.02954)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 603
+        }
+
+        def Shader "Separate3_1"
+        {
+            uniform token info:id = "ND_separate3_vector3"
+            float3 inputs:in.connect = </Root/MaterialEx18/Multiply.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (-223.87558, -1.4036398)
+            float2 ui:nodegraph:node:size = (127.5, 145)
+            int ui:nodegraph:node:stackingOrder = 418
+        }
+
+        def Shader "Add_1"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/MaterialEx18/Separate3.outputs:outz>
+            float inputs:in2.connect = </Root/MaterialEx18/Separate3_1.outputs:outz>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-66.089035, -100.009094)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 601
+        }
+
+        def Shader "Combine2"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/MaterialEx18/Add.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx18/Add_1.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (61.66036, -156.35744)
+            float2 ui:nodegraph:node:size = (144.5, 53)
+            int ui:nodegraph:node:stackingOrder = 605
+        }
+
+        def Shader "WorleyNoise2D"
+        {
+            uniform token info:id = "ND_worleynoise2d_float"
+            float inputs:jitter = 1
+            float2 inputs:texcoord.connect = </Root/MaterialEx18/Combine2.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (230.92696, -171.77075)
+            float2 ui:nodegraph:node:size = (148.5, 127)
+            int ui:nodegraph:node:stackingOrder = 607
+        }
+
+        def Shader "Remap"
+        {
+            uniform token info:id = "ND_remap_color3"
+            color3f inputs:in.connect = </Root/MaterialEx18/Combine3.outputs:out>
+            color3f inputs:inhigh
+            color3f inputs:inlow
+            color3f inputs:outhigh = (0.09677723, 0.08019971, 0.25585938) (
+                colorSpace = "srgb_texture"
+            )
+            color3f inputs:outlow = (0.5253444, 0.59092724, 1) (
+                colorSpace = "srgb_texture"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (290.46945, 36.63532)
+            float2 ui:nodegraph:node:size = (94, 181)
+            int ui:nodegraph:node:stackingOrder = 611
+        }
+    }
+
+    def "plane" (
+        active = true
+        prepend references = @AdditionalPrimitives/plane.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Geom"
+        {
+            over "Plane" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/MaterialEx18> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+            }
+        }
+    }
+}
+

@@ -92,6 +92,10 @@ enum ShaderIndex {
         ShaderExample(id: 21, level: .basic, category: .segment,
                       name: "Artistic blur filter",
                       description: "Arranges the texture coord. with 3D Perlin Noise",
-                      exampleSceneName: "Ex17", thumbnailImage: "ex17")
+                      exampleSceneName: "Ex17", thumbnailImage: "ex17"),
+        ShaderExample(id: 22, level: .basic, category: .segment,
+                      name: "Simple Parallax",
+                      description: "Parallax on WorleyNoise",
+                      exampleSceneName: "Ex18", thumbnailImage: "ex18")
     ]
 }
