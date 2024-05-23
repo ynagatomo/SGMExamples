@@ -32,7 +32,8 @@ Examples:
 1. [Basic] One-time Dissolve (not repeating)
 1. [Basic] Directional Lighting (Lambert diffuse reflection + Phong Specular reflection + Ambient Light)
 1. [Basic] Rim Lighting (Backlit)
-1. [Basic] Hight map morphing (Hight map with 3D-Noise)
+1. [Basic] Height map morphing (Height map with 3D Perlin Noise)
+1. [Basic] Distortion Effect (with 3D Perlin Noise)",
 
 ![Image](assets/ss02.jpg)
 

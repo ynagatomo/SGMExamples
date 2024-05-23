@@ -274,6 +274,36 @@
       }
     ]
   },
+  "242C7444-8DFB-4DC0-8AB8-9ADB23E4B747" : {
+    "objectMetadataList" : [
+      [
+        "242C7444-8DFB-4DC0-8AB8-9ADB23E4B747",
+        "Root",
+        "Sphere"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "242C7444-8DFB-4DC0-8AB8-9ADB23E4B747",
+        "Root",
+        "MaterialEx16"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "242C7444-8DFB-4DC0-8AB8-9ADB23E4B747",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "245EC209-D613-4B46-8F79-75F5785E1EA1" : {
     "objectMetadataList" : [
       [

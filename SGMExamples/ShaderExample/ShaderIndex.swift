@@ -84,6 +84,10 @@ enum ShaderIndex {
         ShaderExample(id: 19, level: .basic, category: .both,
                       name: "Hight map morphing",
                       description: "Hight map with 3D-Noise",
-                      exampleSceneName: "Ex15", thumbnailImage: "ex15")
+                      exampleSceneName: "Ex15", thumbnailImage: "ex15"),
+        ShaderExample(id: 20, level: .basic, category: .segment,
+                      name: "Distortion",
+                      description: "Arranges the texture coord. with 3D Perlin Noise",
+                      exampleSceneName: "Ex16", thumbnailImage: "ex16")
     ]
 }
