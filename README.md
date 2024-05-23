@@ -36,6 +36,7 @@ Examples:
 1. [Basic] Distortion Effect (uv shifting with 3D Perlin Noise)
 1. [Basic] Artistic blur filter (uv shifting with 3D Perlin Noise)
 1. [Basic] Simple Parallax on WorleyNoise
+1. [Basic] Plane polygon river (Flowing river with texture animation)
 
 ![Image](assets/ss02.jpg)
 

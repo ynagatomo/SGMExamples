@@ -96,6 +96,10 @@ enum ShaderIndex {
         ShaderExample(id: 22, level: .basic, category: .segment,
                       name: "Simple Parallax",
                       description: "Parallax on WorleyNoise",
-                      exampleSceneName: "Ex18", thumbnailImage: "ex18")
+                      exampleSceneName: "Ex18", thumbnailImage: "ex18"),
+        ShaderExample(id: 23, level: .basic, category: .segment,
+                      name: "Plane polygon river",
+                      description: "Flowing river with texture animation",
+                      exampleSceneName: "Ex19", thumbnailImage: "ex19")
     ]
 }
