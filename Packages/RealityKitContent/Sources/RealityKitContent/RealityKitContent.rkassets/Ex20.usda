@@ -11,28 +11,6 @@
 def Xform "Root"
 {
     reorder nameChildren = ["grass_group", "MaterialEx20"]
-    def "grass_group" (
-        active = false
-        references = @Models/grass_group.usdz@
-    )
-    {
-        float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (0, 0, 0)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-        over "Geom"
-        {
-            over "Grass" (
-                prepend apiSchemas = ["MaterialBindingAPI"]
-            )
-            {
-                rel material:binding = </Root/MaterialEx20> (
-                    bindMaterialAs = "weakerThanDescendants"
-                )
-            }
-        }
-    }
-
     def Material "MaterialEx20"
     {
         token outputs:mtlx:surface.connect = </Root/MaterialEx20/PreviewSurface.outputs:out>

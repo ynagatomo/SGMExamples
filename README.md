@@ -41,6 +41,8 @@ Examples:
 
 ![Image](assets/ss02.jpg)
 
+![Image](assets/ss_howToCreateGrassMesh_1600.png)
+
 <!--
 ## Examples
 -->
