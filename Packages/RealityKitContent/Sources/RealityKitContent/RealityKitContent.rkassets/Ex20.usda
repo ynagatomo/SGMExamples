@@ -1,0 +1,295 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.100.15)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["grass_group", "MaterialEx20"]
+    def "grass_group" (
+        active = false
+        references = @Models/grass_group.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Geom"
+        {
+            over "Grass" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/MaterialEx20> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+            }
+        }
+    }
+
+    def Material "MaterialEx20"
+    {
+        token outputs:mtlx:surface.connect = </Root/MaterialEx20/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex.connect = </Root/MaterialEx20/GeometryModifier.outputs:out>
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (389.9356, 140.47221)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 48
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            color3f inputs:diffuseColor.connect = </Root/MaterialEx20/Combine3.outputs:out>
+            float inputs:metallic
+            float3 inputs:normal
+            float inputs:occlusion
+            float inputs:opacity.connect = </Root/MaterialEx20/Separate4.outputs:outa>
+            float inputs:opacityThreshold = 0.9
+            float inputs:roughness = 0.8
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (102.02344, 109.609375)
+            float2 ui:nodegraph:node:size = (159.5, 307)
+            int ui:nodegraph:node:stackingOrder = 285
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+        }
+
+        def Shader "Separate4"
+        {
+            uniform token info:id = "ND_separate4_color4"
+            color4f inputs:in.connect = </Root/MaterialEx20/Image.outputs:out>
+            float outputs:outa
+            float outputs:outb
+            float outputs:outg
+            float outputs:outr
+            float2 ui:nodegraph:node:pos = (-287.27704, 52.156967)
+            float2 ui:nodegraph:node:size = (115.5, 163)
+            int ui:nodegraph:node:stackingOrder = 206
+        }
+
+        def Shader "Image"
+        {
+            uniform token info:id = "ND_image_color4"
+            asset inputs:file = @TextureImages/GrassTexture512.png@
+            string inputs:filtertype
+            color4f outputs:out
+            float2 ui:nodegraph:node:pos = (-481.74805, 43.805305)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 284
+        }
+
+        def Shader "Combine3"
+        {
+            uniform token info:id = "ND_combine3_color3"
+            float inputs:in1.connect = </Root/MaterialEx20/Separate4.outputs:outr>
+            float inputs:in2.connect = </Root/MaterialEx20/Separate4.outputs:outg>
+            float inputs:in3.connect = </Root/MaterialEx20/Separate4.outputs:outb>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-95.83523, 25.044842)
+            float2 ui:nodegraph:node:size = (145, 54)
+            int ui:nodegraph:node:stackingOrder = 204
+        }
+
+        def Shader "Position"
+        {
+            uniform token info:id = "ND_position_vector3"
+            string inputs:space = "world"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-1316.0682, 259.85736)
+            float2 ui:nodegraph:node:size = (133.5, 40)
+            int ui:nodegraph:node:stackingOrder = 281
+        }
+
+        def Shader "Bend"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0.2
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-476.95285, 356.5039)
+            float2 ui:nodegraph:node:size = (117, 53)
+            int ui:nodegraph:node:stackingOrder = 222
+        }
+
+        def Shader "GeometryModifier"
+        {
+            uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+            color4f inputs:color
+            float3 inputs:modelPositionOffset.connect = </Root/MaterialEx20/Multiply_4.outputs:out>
+            float3 inputs:normal
+            half2 inputs:userAttributeHalf2_0
+            half2 inputs:userAttributeHalf2_1
+            half4 inputs:userAttributeHalf4_3
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (91.804665, 446.97705)
+            float2 ui:nodegraph:node:size = (196.5, 325)
+            int ui:nodegraph:node:stackingOrder = 46
+        }
+
+        def Shader "Noise3D"
+        {
+            uniform token info:id = "ND_noise3d_vector3"
+            float3 inputs:amplitude = (1.2, 1.2, 1.2)
+            float inputs:pivot = 0.01
+            float3 inputs:position.connect = </Root/MaterialEx20/Add.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-477.2679, 234.19955)
+            float2 ui:nodegraph:node:size = (105, 145)
+            int ui:nodegraph:node:stackingOrder = 220
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:amplitude"]
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_vector3FA"
+            float3 inputs:in1.connect = </Root/MaterialEx20/Noise3D.outputs:out>
+            prepend float inputs:in2.connect = </Root/MaterialEx20/Bend.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-273.62335, 289.74023)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 216
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_vector3FA"
+            prepend float3 inputs:in1.connect = </Root/MaterialEx20/Position.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx20/PositionScale.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-810.99835, 89.876854)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 232
+        }
+
+        def Shader "PositionScale"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0.01
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-971.18243, 29.38682)
+            float2 ui:nodegraph:node:size = (169, 53)
+            int ui:nodegraph:node:stackingOrder = 283
+        }
+
+        def Shader "Time"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-963.7805, 199.66063)
+            float2 ui:nodegraph:node:size = (122.5, 53)
+            int ui:nodegraph:node:stackingOrder = 279
+        }
+
+        def Shader "Speed"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-958.995, 281.162)
+            float2 ui:nodegraph:node:size = (124.5, 53)
+            int ui:nodegraph:node:stackingOrder = 279
+        }
+
+        def Shader "Multiply_2"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/MaterialEx20/Time.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx20/Speed.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-794.1985, 232.88387)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 279
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_vector3FA"
+            prepend float3 inputs:in1.connect = </Root/MaterialEx20/Multiply_1.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx20/Multiply_2.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-657.1732, 175.57063)
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+            int ui:nodegraph:node:stackingOrder = 230
+        }
+
+        def Shader "Multiply_3"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </Root/MaterialEx20/Multiply.outputs:out>
+            float3 inputs:in2 = (1, 0, 1)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-180.97737, 290.72797)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 215
+        }
+
+        def Shader "GeometryModifierWorldToModel"
+        {
+            uniform token info:id = "ND_realitykit_geometry_modifier_world_to_model"
+            matrix4d outputs:worldToModel
+            float2 ui:nodegraph:node:pos = (-660.7866, 589.96625)
+            float2 ui:nodegraph:node:size = (250, 81)
+            int ui:nodegraph:node:stackingOrder = 228
+        }
+
+        def Shader "Separate3"
+        {
+            uniform token info:id = "ND_separate3_vector3"
+            float3 inputs:in.connect = </Root/MaterialEx20/WorldToModel.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (-209.603, 542.3677)
+            float2 ui:nodegraph:node:size = (115.5, 145)
+            int ui:nodegraph:node:stackingOrder = 224
+        }
+
+        def Shader "Multiply_4"
+        {
+            uniform token info:id = "ND_multiply_vector3FA"
+            prepend float3 inputs:in1.connect = </Root/MaterialEx20/Multiply_3.outputs:out>
+            float inputs:in2.connect = </Root/MaterialEx20/Separate3.outputs:outy>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-77.63055, 314.0774)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 210
+        }
+
+        def Shader "WorldToModel"
+        {
+            uniform token info:id = "ND_transformmatrix_vector3M4"
+            float3 inputs:in.connect = </Root/MaterialEx20/Position.outputs:out>
+            matrix4d inputs:mat.connect = </Root/MaterialEx20/GeometryModifierWorldToModel.outputs:worldToModel>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-371.90466, 541.0523)
+            float2 ui:nodegraph:node:size = (139, 127)
+            int ui:nodegraph:node:stackingOrder = 226
+        }
+    }
+
+    def "grassGroupMesh" (
+        active = true
+        prepend references = @Models/grassGroupMesh.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, -0.4, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Geom"
+        {
+            over "Grass" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/MaterialEx20> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+            }
+        }
+    }
+}
+

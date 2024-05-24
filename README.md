@@ -37,6 +37,7 @@ Examples:
 1. [Basic] Artistic blur filter (uv shifting with 3D Perlin Noise)
 1. [Basic] Simple Parallax on WorleyNoise
 1. [Basic] Plane polygon river (Flowing river with texture animation)
+1. [Basic] Swaying Grass (swaying plane polygon grass)
 
 ![Image](assets/ss02.jpg)
 
@@ -76,6 +77,7 @@ description...
 
 - HDRI: Oliksiy Yakovlyev, Artist Workshop [Poly Heaven](https://polyhaven.com/a/artist_workshop) 
 - Rock Texture Image: Granite 5 PBR Material [Free PBR](https://freepbr.com/materials/granite-5-pbr/)
+- Grass illustration: Garden Grass Collection [Designed by Freepik](http://www.freepik.com)
 
 ## References
 

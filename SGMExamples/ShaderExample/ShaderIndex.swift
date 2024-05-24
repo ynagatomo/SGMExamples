@@ -100,6 +100,10 @@ enum ShaderIndex {
         ShaderExample(id: 23, level: .basic, category: .segment,
                       name: "Plane polygon river",
                       description: "Flowing river with texture animation",
-                      exampleSceneName: "Ex19", thumbnailImage: "ex19")
+                      exampleSceneName: "Ex19", thumbnailImage: "ex19"),
+        ShaderExample(id: 24, level: .basic, category: .both,
+                      name: "Swaying Grass",
+                      description: "Swaying plane polygon grass",
+                      exampleSceneName: "Ex20", thumbnailImage: "ex20")
     ]
 }
