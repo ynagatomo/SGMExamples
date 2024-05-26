@@ -104,6 +104,10 @@ enum ShaderIndex {
         ShaderExample(id: 24, level: .basic, category: .both,
                       name: "Swaying Grass",
                       description: "Swaying plane polygon grass",
-                      exampleSceneName: "Ex20", thumbnailImage: "ex20")
+                      exampleSceneName: "Ex20", thumbnailImage: "ex20"),
+        ShaderExample(id: 25, level: .basic, category: .segment,
+                      name: "Volumetric Shader",
+                      description: "Using multiple planes and 3D Fractal Noise",
+                      exampleSceneName: "Ex21", thumbnailImage: "ex21")
     ]
 }

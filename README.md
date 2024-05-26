@@ -38,6 +38,7 @@ Examples:
 1. [Basic] Simple Parallax on WorleyNoise
 1. [Basic] Plane polygon river (Flowing river with texture animation)
 1. [Basic] Swaying Grass (swaying plane polygon grass)
+1. [Basic] Volumetric Shader (Using multiple planes and 3D Fractal Noise)
 
 ![Image](assets/ss02.jpg)
 
