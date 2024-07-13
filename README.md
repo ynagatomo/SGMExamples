@@ -14,7 +14,7 @@ Some of them are based on Satoshi's MSL (Metal Shading Language) Examples. (Than
 
 Examples:
 
-1. [Basic] Color Ball
+1. ![Image](assets/ex01.png) [Basic] Color Ball
 1. [Advanced] Blue Lines
 1. [Advanced] Blue and Green Lines
 1. [Advanced] Edge Filter
